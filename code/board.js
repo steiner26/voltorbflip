@@ -6,10 +6,20 @@ function Board(size, rank) {
     ))
   ));
 
+  // var xhttp = new XMLHttpRequest();
+  // xhttp.onreadystatechange = function() {
+  //   if (this.readyState == 4 && this.status == 200) {
+  //     data = JSON.parse(this.responseText)[rank][chance.natural({ min: 0, max: 4 })]
+  //   }
+  // };
+  // xhttp.open("GET", "code/levels.json", false);
+  // xhttp.send();
+
   $.getJSON("code/levels.json", function(json) {
     data = json[rank][chance.natural({ min: 0, max: 4 })];
-    this.setup(data);
   });
+
+  this.setup(data)
 }
 
 Board.prototype.setup = function (data) {
@@ -40,7 +50,7 @@ Board.prototype.setup = function (data) {
       tile = this.tiles[r][c];
       (v = tile.value) ? p += v : b += 1;
     }
-    sums.push(new Info(p, b))
+    rsums.push(new Info(p, b))
   }
   this.rowsinfo = rsums
 
@@ -51,7 +61,7 @@ Board.prototype.setup = function (data) {
       tile = this.tiles[r][c];
       (v = tile.value) ? p += v : b += 1;
     }
-    sums.push(new Info(p, b));
+    csums.push(new Info(p, b));
   }
   this.colsinfo = csums
 }
