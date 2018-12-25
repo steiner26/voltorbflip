@@ -6,14 +6,7 @@ function Board(size, rank) {
     ))
   ));
 
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      data = JSON.parse(this.responseText)[rank][chance.natural({ min: 0, max: 4 })]
-    }
-  };
-  xhttp.open("GET", "code/levels.json", false);
-  xhttp.send();
+  data = levels[rank][chance.natural({ min: 0, max: 4 })]
 
   // $.getJSON("code/levels.json", function(json) {
   //   data = json[rank][chance.natural({ min: 0, max: 4 })];

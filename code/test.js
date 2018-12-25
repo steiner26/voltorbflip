@@ -1,2 +1,2 @@
 var b = new Board(5, 4);
-console.log(b.tiles)
+console.log(b)
