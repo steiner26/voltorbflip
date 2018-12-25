@@ -1,6 +1,6 @@
 function Tile(position, value, flipped) {
-  this.x = position.x
-  this.y = position.y
+  this.x = position[0]
+  this.y = position[1]
   this.value = value
   this.isFlipped = flipped
 }
