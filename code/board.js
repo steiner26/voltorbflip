@@ -7,14 +7,10 @@ function Board(size, rank) {
 
 Board.prototype.getTiles = function (rank) {
   var data = ""
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      data = JSON.parse(this.responseText);
-    }
-  };
-  xhttp.open("GET", "levels.json", true);
-  xhttp.send();
+  $.getJSON( "code/levels.json", function( json ) {
+    data = json[rank][chance.natural({ min: 0, max: 4 })]
+  });
+  console.log(data)
 }
 
 Board.prototype.setup = function () {
