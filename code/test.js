@@ -1,5 +1,5 @@
 alert("hello");
 
-$.getJSON( "levels.json", function( json ) {
+$.getJSON( "code/levels.json", function( json ) {
   console.log(json);
 });
