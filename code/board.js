@@ -1,19 +1,19 @@
 function Board(size, rank) {
   this.size = size
 
-  this.tiles = this.genTiles(rank)
-  this.setup(rank)
-}
-
-Board.prototype.getTiles = function (rank) {
-  var data = ""
-  $.getJSON( "code/levels.json", function( json ) {
+  $.getJSON("code/levels.json", function(json) {
     data = json[rank][chance.natural({ min: 0, max: 4 })]
+    this.setup(data)
   });
-  console.log(data)
 }
 
-Board.prototype.setup = function () {
+Board.prototype.setup = function (data) {
+  /* 
+  Generate board here using data [2s, 3s, bombs]
+  Sum the numbers and pick that many random positions, then assign the tiles
+  to those positions
+  */
+
   var sums = []
   for (r = 0; r < this.size; r++) {
     p = 0; b = 0;
