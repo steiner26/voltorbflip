@@ -1,3 +1,4 @@
 .tile {
   border: 1px solid black;
+  float: left;
 }
