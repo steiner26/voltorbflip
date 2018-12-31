@@ -1,4 +1,4 @@
-function Board(size, rank) {
+function Board (size, rank) {
   this.size = size;
   this.tiles = Array.from({ length: 5 }, (_, colIndex) => (
     Array.from({ length: 5 }, (_, rowIndex) => (

@@ -1,4 +1,4 @@
-function Tile(position, value, flipped) {
+function Tile (position, value, flipped) {
   this.x = position[0]
   this.y = position[1]
   this.value = value
