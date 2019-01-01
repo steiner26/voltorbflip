@@ -11,7 +11,7 @@
 
 .tile {
   border: 1px solid black;
-  background-image: 'blanktile.png';
+  background-image: url('blanktile.png');
   background-size: cover;
   background-position: center;
 }
