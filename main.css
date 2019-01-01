@@ -1,4 +1,17 @@
+.board-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.board-row {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: row;
+}
+
 .tile {
   border: 1px solid black;
-  float: left;
+  background-image: 'blanktile.png';
+  background-size: cover;
+  background-position: center;
 }
