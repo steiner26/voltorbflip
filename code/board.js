@@ -58,3 +58,10 @@ Board.prototype.setup = function (data) {
   }
   this.colsinfo = csums
 }
+
+Board.prototype.flip = function (row, col) {
+  if (result = this.tiles[row][col].flip()) {
+    console.log(result);
+    // result is the value of the flipped tile [0..3]
+  } 
+}

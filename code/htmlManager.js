@@ -6,6 +6,13 @@ function HTMLManager () {
 }
 
 HTMLManager.prototype.update = function (board, data) {
-
+  for  (r = 0; r < 5; r++) {
+    for (c = 0; c < 5; c++) {
+      var tile = this.boardContainer.childNodes[r].childNodes[c]
+      tile.click(function() {
+        board.flip(r, c);
+      });
+    }
+  }
 }
 
