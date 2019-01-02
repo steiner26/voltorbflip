@@ -10,8 +10,7 @@ HTMLManager.prototype.setBoard = function (board) {
     for (c = 0; c < 5; c++) {
       var tile = this.boardContainer.children[r].children[c]
       tile.addEventListener("click", function () {
-        board.flip(r, c);
-        console.log(""+r+", "+c);
+        board.flip({row:r, col:c});
       });
     }
   }
