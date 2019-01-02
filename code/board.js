@@ -61,10 +61,5 @@ Board.prototype.setup = function (data) {
 }
 
 Board.prototype.flip = function (pos) {
-  result = this.tiles[pos.row][pos.col].flip()
-  if (result == 0) {
-    console.log("bomb");
-  } else if (result != null) {
-    console.log(result)
-  }
+  return this.tiles[pos.row][pos.col].flip();
 }
