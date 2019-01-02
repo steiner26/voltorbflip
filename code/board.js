@@ -59,8 +59,10 @@ Board.prototype.setup = function (data) {
 }
 
 Board.prototype.flip = function (pos) {
-  if (result = this.tiles[pos.row][pos.col].flip()) {
-    console.log(result);
-    // result is the value of the flipped tile [0..3]
-  } 
+  result = this.tiles[pos.row][pos.col].flip()
+  if (result == 0) {
+    console.log("bomb");
+  } else if (result != null) {
+    console.log(result)
+  }
 }
