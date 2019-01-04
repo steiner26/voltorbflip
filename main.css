@@ -17,9 +17,9 @@ body {
 
 .tile {
   border: 2px solid black;
-  background-image: url(blanktile.png);
+  /* background-image: url(blanktile.png);
   background-size: cover;
-  background-position: center;
+  background-position: center; */
   width: 70px;
   height: 70px;
   margin: 8px;
@@ -45,9 +45,9 @@ body {
 }
 
 .tile_front {
-  /* background-image: url(blanktile.png);
+  background-image: url(blanktile.png);
   background-size: cover;
-  background-position: center; */
+  background-position: center;
 }
 
 .tile_back {
