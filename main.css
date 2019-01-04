@@ -48,6 +48,7 @@ body {
   background-image: url(blanktile.png);
   background-size: cover;
   background-position: center;
+  cursor: pointer;
 }
 
 .tile_back {
