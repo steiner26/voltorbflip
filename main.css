@@ -17,14 +17,13 @@ body {
 
 .tile {
   border: 2px solid black;
-  /* background-image: url(blanktile.png);
+  background-image: url(blanktile.png);
   background-size: cover;
-  background-position: center; */
+  background-position: center;
   width: 70px;
   height: 70px;
   margin: 8px;
   position: relative;
-  cursor: pointer;
   transition: transform .2s;
   transform-style: preserve-3d;
 }
@@ -46,9 +45,10 @@ body {
 }
 
 .tile_front {
-  background-image: url(blanktile.png);
+  cursor: pointer;
+  /* background-image: url(blanktile.png);
   background-size: cover;
-  background-position: center;
+  background-position: center; */
 }
 
 .tile_back {
