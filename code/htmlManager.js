@@ -11,6 +11,7 @@ HTMLManager.prototype.setBoard = function (manager) {
       var tile = this.boardContainer.children[r].children[c]
       tile.pos = {row:r, col:c}
       tile.addEventListener("click", function () {
+        tile.classList.add('is-flipped');
         manager.flip(this.pos);
       });
     }
