@@ -53,6 +53,7 @@ body {
 
 .tile_back {
   background: white;
+  transform: rotateY(180deg);
 }
 
 .tile:before {
