@@ -52,7 +52,7 @@ body {
 }
 
 .tile_back {
-  background: white;
+  background: #BC8C85;
   transform: rotateY(180deg);
 }
 
