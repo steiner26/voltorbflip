@@ -55,9 +55,12 @@ body {
   background: #BC8C85;
   transform: rotateY(180deg);
   color: black;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px white;
+  font-size: 45px;
+  /* text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white; */
+  -webkit-text-stroke: 1px white;
   text-align: center; 
-  vertical-align: middle;
+  line-height: 70px;
+  font-family: "Arial Black";
 }
 
 .tile:before {
