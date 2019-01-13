@@ -14,3 +14,7 @@ GameManager.prototype.flip = function (pos) {
     //Flip the tile
   }
 }
+
+GameManager.prototype.getTile = function (row, col) {
+  return this.board.tiles[row][col].value
+}

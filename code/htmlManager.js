@@ -8,8 +8,9 @@ function HTMLManager () {
 HTMLManager.prototype.setBoard = function (manager) {
   for  (r = 0; r < 5; r++) {
     for (c = 0; c < 5; c++) {
-      var tile = this.boardContainer.children[r].children[c]
-      tile.pos = {row:r, col:c}
+      var tile = this.boardContainer.children[r].children[c];
+      tile.pos = {row:r, col:c};
+      tile.children[1].innerHTML = manager.getTile(row, col);
       tile.addEventListener("click", function () {
         this.classList.add('is-flipped');
         manager.flip(this.pos);
