@@ -67,7 +67,7 @@ body {
   background-image: url(voltorb.png);
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 50%;
+  background-size: 100%;
 }
 
 .tile_back_1:after {
