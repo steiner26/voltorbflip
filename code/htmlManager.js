@@ -12,7 +12,7 @@ HTMLManager.prototype.setBoard = function (manager) {
       tile.pos = {row:r, col:c};
       tile.addEventListener("click", function () {
         this.classList.add('is-flipped');
-        if (value = manager.flip(this.pos) == 0) {
+        if ((value = manager.flip(this.pos)) == 0) {
           this.children[1].classList.add("tile_back_bomb");
         } else {
           this.children[1].classList.add("tile_back_"+value.toString());
