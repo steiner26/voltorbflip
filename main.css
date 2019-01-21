@@ -63,6 +63,22 @@ body {
   font-family: "Arial Black";
 }
 
+.tile_back_bomb {
+  content: "0"
+}
+
+.tile_back_1 {
+  content: "1";
+}
+
+.tile_back_2 {
+  content: "2";
+}
+
+.tile_back_3 {
+  content: "3";
+}
+
 .tile:before {
   background: none;
   border: 4px solid #D1E8E0;
