@@ -63,8 +63,11 @@ body {
   font-family: "Arial Black";
 }
 
-.tile_back_bomb:after {
-  content: "0"
+.tile_back_bomb {
+  background-image: url(voltorb.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 50%;
 }
 
 .tile_back_1:after {
