@@ -45,7 +45,7 @@ body {
 }
 
 .tile_front {
-  background-image: url(blanktile.png);
+  background-image: url(images/blanktile.png);
   background-size: cover;
   background-position: center;
   cursor: pointer;
@@ -64,7 +64,7 @@ body {
 }
 
 .tile_back_bomb {
-  background-image: url(voltorb.png);
+  background-image: url(images/voltorb.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 60%;
