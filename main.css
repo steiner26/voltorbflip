@@ -63,19 +63,19 @@ body {
   font-family: "Arial Black";
 }
 
-.tile_back_bomb {
+.tile_back_bomb:after {
   content: "0"
 }
 
-.tile_back_1 {
+.tile_back_1:after {
   content: "1";
 }
 
-.tile_back_2 {
+.tile_back_2:after {
   content: "2";
 }
 
-.tile_back_3 {
+.tile_back_3:after {
   content: "3";
 }
 
