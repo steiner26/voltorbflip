@@ -3,6 +3,8 @@ function HTMLManager () {
   this.scoreContainer   = document.querySelector(".score-container");
   // this.bestContainer    = document.querySelector(".best-container");
   this.messageContainer = document.querySelector(".game-message");
+  this.sideInfoContainer = document.querySelector(".info_side");
+  this.bottomInfoContainer = document.querySelector(".info_bottom");
 }
 
 HTMLManager.prototype.setBoard = function (manager) {
