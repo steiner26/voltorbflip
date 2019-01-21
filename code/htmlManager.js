@@ -17,20 +17,6 @@ HTMLManager.prototype.setBoard = function (manager) {
         } else {
           this.children[1].classList.add("tile_back_"+value.toString());
         }
-        // switch (manager.flip(this.pos)) {
-        //   case 0:
-        //     this.children[1].classList.add("tile-bomb");
-        //     break;
-        //   case 1:
-        //     this.children[1].classList.add("tile-1");
-        //     break;
-        //   case 2:
-        //     this.children[1].classList.add("tile-2");
-        //     break;
-        //   case 3:
-        //     this.children[1].classList.add("tile-3");
-        //     break;
-        // }
       });
     }
   }

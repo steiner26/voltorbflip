@@ -18,22 +18,22 @@ Board.prototype.setup = function (data) {
     result = {};
     result.x = (chance.natural({ min: 0, max: 4 }));
     result.y = (chance.natural({ min: 0, max: 4 }));
-    return result
+    return result;
   }, data[0]+data[1]+data[2], { comparator: function(arr, val) {
     return arr.reduce(function(acc, item) {
       return acc || (item.x == val.x && item.y == val.y);
-    }, false)
+    }, false);
   }});
 
   //place 2/3/bomb tiles onto the board
   for (i = 0; i < data[0]; i++) {
-    this.tiles[spots[i].x][spots[i].y] = new Tile(spots[i], 2, false)
+    this.tiles[spots[i].x][spots[i].y] = new Tile(spots[i], 2, false);
   }
   for (i = i; i < data[0]+data[1]; i++) {
-    this.tiles[spots[i].x][spots[i].y] = new Tile(spots[i], 3, false)
+    this.tiles[spots[i].x][spots[i].y] = new Tile(spots[i], 3, false);
   }
   for (i = i; i < data[0]+data[1]+data[2]; i++) {
-    this.tiles[spots[i].x][spots[i].y] = new Tile(spots[i], 0, false)
+    this.tiles[spots[i].x][spots[i].y] = new Tile(spots[i], 0, false);
   }
 
   //calculate the info for the rows and columns
@@ -44,7 +44,7 @@ Board.prototype.setup = function (data) {
       tile = this.tiles[r][c];
       (v = tile.value) ? p += v : b += 1;
     }
-    rsums.push(new Info(p, b))
+    rsums.push(new Info(p, b));
   }
   this.rowsinfo = rsums
 
@@ -57,7 +57,7 @@ Board.prototype.setup = function (data) {
     }
     csums.push(new Info(p, b));
   }
-  this.colsinfo = csums
+  this.colsinfo = csums;
 }
 
 Board.prototype.flip = function (pos) {
