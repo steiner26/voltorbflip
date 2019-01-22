@@ -149,6 +149,7 @@ body {
   /* border-bottom: 4px solid #D1E8E0; */
   flex: 2;
   text-align: right;
+  padding-right: 3px;
   color: black;
   margin-top: -10px;
   margin-bottom: -8px;
@@ -162,10 +163,10 @@ body {
   background-image: url(images/voltorb.png);
   background-repeat: no-repeat;
   background-position: 5px;
-  background-size: 50%;
+  background-size: 55%;
   color: black;
   font-size: 30px;
-  padding-right: 5px;
+  padding-right: 3px;
   text-align: right;
   font-family: "Arial Black";
 }
