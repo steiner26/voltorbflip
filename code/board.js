@@ -8,7 +8,7 @@ function Board (rank) {
 
   //read 2/3/bomb data from levels and set up board
   data = levels[rank][chance.natural({ min: 0, max: 4 })];
-  this.totalPoints = Math.pow(2, data[0]) + Math.pow(3, data[1]);
+  this.totalPoints = Math.pow(2, data[0]) * Math.pow(3, data[1]);
   console.log(this.totalPoints);
   this.setup(data);
 }
