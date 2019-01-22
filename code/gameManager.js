@@ -13,8 +13,7 @@ GameManager.prototype.flip = function (pos) {
     //Game Lost
   } else if (result != null) {
     this.currentPoints *= result;
-    console.log(this.currentPoints);
-    if (this.currentPoints == this.totalPoints) {
+    if (this.currentPoints == this.board.totalPoints) {
       console.log("Game Won!");
       this.gameWon();
     }
