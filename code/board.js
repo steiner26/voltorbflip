@@ -46,7 +46,7 @@ Board.prototype.setup = function (data) {
     }
     rsums.push(new Info(p, b));
   }
-  this.rowsinfo = rsums
+  this.rowsInfo = rsums
 
   var csums = [];
   for (c = 0; c < 5; c++) {
@@ -57,7 +57,7 @@ Board.prototype.setup = function (data) {
     }
     csums.push(new Info(p, b));
   }
-  this.colsinfo = csums;
+  this.colsInfo = csums;
 }
 
 Board.prototype.flip = function (pos) {
