@@ -13,9 +13,7 @@ GameManager.prototype.flip = function (pos) {
     //Game Lost
   } else if (result != null) {
     this.currentPoints *= result;
-    console.log(this.currentPoints);
     if (this.currentPoints == this.board.totalPoints) {
-      console.log("Game Won!");
       this.gameWon();
     }
   }
@@ -23,6 +21,8 @@ GameManager.prototype.flip = function (pos) {
 }
 
 GameManager.prototype.gameWon = function () {
+  this.totalPoints += this.currentPoints;
+  this.currentPoints = 0;
   this.level = Math.max(this.level+1, 7);
   this.board = new Board(this.level);
   this.htmlManager.setBoard(this);
