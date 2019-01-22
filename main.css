@@ -146,14 +146,26 @@ body {
 
 .info_points {
   align-content: right;
-  border-bottom: 4px solid #D1E8E0;
-  flex: 2
+  /* border-bottom: 4px solid #D1E8E0; */
+  flex: 2;
+  text-align: right;
+  color: black;
+  margin-top: -7px;
+  /* margin-bottom: -7px; */
+  font-family: "Arial Black";
+  font-size: 23px;
 }
 
 .info_bombs {
-  flex: 3
-}
-
-.info_bombs:before {
-  background-image: url(images/voltorb_small.png);
+  flex: 3;
+  border-top: 4px solid #D1E8E0;
+  background-image: url(images/voltorb.png);
+  background-repeat: no-repeat;
+  background-position: 5px;
+  background-size: 50%;
+  color: black;
+  font-size: 30px;
+  padding-right: 5px;
+  text-align: right;
+  font-family: "Arial Black";
 }
