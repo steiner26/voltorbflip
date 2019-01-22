@@ -96,3 +96,13 @@ body {
   bottom: -6px;
   pointer-events: none;
 }
+
+.info {
+  width: 70px;
+  height: 70px;
+  margin: 8px;
+}
+
+.info_bottom .info {
+  float: left;
+}
