@@ -111,6 +111,7 @@ body {
   border-radius: 4px;
   width: 74px;
   height: 74px;
+  display: flex;
 }
 
 .info_side .info {
@@ -120,4 +121,18 @@ body {
 .info_bottom .info {
   margin: 4px 4px 0px 4px;
   float: left;
+}
+
+.info_points {
+  align-content: right;
+  border-bottom: 4px solid #D1E8E0;
+  flex: 2
+}
+
+.info_bombs {
+  flex: 3
+}
+
+.info_bombs:before {
+  background-image: url(images/voltorb_small.png);
 }

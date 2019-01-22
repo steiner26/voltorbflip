@@ -23,5 +23,8 @@ HTMLManager.prototype.setBoard = function (manager) {
       });
     }
   }
+
+  manager.board.rowsinfo;
+  manager.board.colsinfo;
 }
 
