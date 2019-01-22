@@ -112,6 +112,7 @@ body {
   width: 74px;
   height: 74px;
   display: flex;
+  flex-direction: column;
 }
 
 .info_side .info {
