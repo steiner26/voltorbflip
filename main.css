@@ -115,11 +115,11 @@ body {
   flex-direction: column;
 }
 
-.info_side .info {
+.info_rows .info {
   margin: 4px 0px 8px 8px;
 }
 
-.info_bottom .info {
+.info_cols .info {
   margin: 4px 4px 0px 4px;
   float: left;
 }

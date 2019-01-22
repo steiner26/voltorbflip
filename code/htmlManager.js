@@ -1,10 +1,10 @@
 function HTMLManager () {
-  this.boardContainer    = document.querySelector(".board-container");
-  this.scoreContainer   = document.querySelector(".score-container");
+  this.boardContainer = document.querySelector(".board-container");
+  this.scoreContainer = document.querySelector(".score-container");
   // this.bestContainer    = document.querySelector(".best-container");
   this.messageContainer = document.querySelector(".game-message");
-  this.sideInfoContainer = document.querySelector(".info_side");
-  this.bottomInfoContainer = document.querySelector(".info_bottom");
+  this.rowsInfoContainer = document.querySelector(".info_side");
+  this.colsInfoContainer = document.querySelector(".info_bottom");
 }
 
 HTMLManager.prototype.setBoard = function (manager) {
@@ -24,7 +24,18 @@ HTMLManager.prototype.setBoard = function (manager) {
     }
   }
 
-  manager.board.rowsinfo;
-  manager.board.colsinfo;
+  for (i = 0; i < 5; i++) {
+    Rinfo = this.sideInfoContainer.children[i];
+    Rinfo.children[0].innerHTML = this.toTwoDigits(manager.board.rowsinfo[i].points);
+    Rinfo.children[1].innerHTML = manager.board.rowsinfo[i].bombs.toString()
+
+    Cinfo = this.sideInfoContainer.children[i];
+    Cinfo.children[0].innerHTML = this.toTwoDigits(manager.board.colsinfo[i].points);
+    Cinfo.children[1].innerHTML = manager.board.colsinfo[i].bombs.toString()
+  }
+}
+
+HTMLManager.prototype.toTwoDigits = function (n) {
+  return (n > 9 ? "" : "0") + n.toString();
 }
 
