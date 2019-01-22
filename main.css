@@ -124,6 +124,26 @@ body {
   float: left;
 }
 
+.info-1 {
+  background-color: #DE7055;
+}
+
+.info-2 {
+  background-color: #45A746;
+}
+
+.info-3 {
+  background-color: #E69F43;
+}
+
+.info-4 {
+  background-color: #3792F5;
+}
+
+.info-5 {
+  background-color: #BF65DD;
+}
+
 .info_points {
   align-content: right;
   border-bottom: 4px solid #D1E8E0;
