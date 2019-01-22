@@ -150,10 +150,10 @@ body {
   flex: 2;
   text-align: right;
   color: black;
-  margin-top: -7px;
-  /* margin-bottom: -7px; */
+  margin-top: -10px;
+  margin-bottom: -8px;
   font-family: "Arial Black";
-  font-size: 23px;
+  font-size: 30px;
 }
 
 .info_bombs {
