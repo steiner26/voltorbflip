@@ -25,11 +25,11 @@ HTMLManager.prototype.setBoard = function (manager) {
   }
 
   for (i = 0; i < 5; i++) {
-    Rinfo = this.sideInfoContainer.children[i];
+    Rinfo = this.rowsInfoContainer.children[i];
     Rinfo.children[0].innerHTML = this.toTwoDigits(manager.board.rowsinfo[i].points);
     Rinfo.children[1].innerHTML = manager.board.rowsinfo[i].bombs.toString()
 
-    Cinfo = this.sideInfoContainer.children[i];
+    Cinfo = this.colsInfoContainer.children[i];
     Cinfo.children[0].innerHTML = this.toTwoDigits(manager.board.colsinfo[i].points);
     Cinfo.children[1].innerHTML = manager.board.colsinfo[i].bombs.toString()
   }
