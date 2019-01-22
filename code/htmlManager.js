@@ -26,12 +26,12 @@ HTMLManager.prototype.setBoard = function (manager) {
 
   for (i = 0; i < 5; i++) {
     Rinfo = this.rowsInfoContainer.children[i];
-    Rinfo.children[0].innerHTML = this.toTwoDigits(manager.board.rowsinfo[i].points);
-    Rinfo.children[1].innerHTML = manager.board.rowsinfo[i].bombs.toString()
+    Rinfo.children[0].innerHTML = this.toTwoDigits(manager.board.rowsInfo[i].points);
+    Rinfo.children[1].innerHTML = manager.board.rowsInfo[i].bombs.toString()
 
     Cinfo = this.colsInfoContainer.children[i];
-    Cinfo.children[0].innerHTML = this.toTwoDigits(manager.board.colsinfo[i].points);
-    Cinfo.children[1].innerHTML = manager.board.colsinfo[i].bombs.toString()
+    Cinfo.children[0].innerHTML = this.toTwoDigits(manager.board.colsInfo[i].points);
+    Cinfo.children[1].innerHTML = manager.board.colsInfo[i].bombs.toString()
   }
 }
 
