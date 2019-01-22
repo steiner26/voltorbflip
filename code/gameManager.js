@@ -15,6 +15,7 @@ GameManager.prototype.flip = function (pos) {
     this.currentPoints *= result;
     console.log(this.currentPoints);
     if (this.currentPoints == this.totalPoints) {
+      console.log("Game Won!");
       this.gameWon();
     }
   }
