@@ -4,6 +4,7 @@ body {
 
 .game-container {
   margin: auto;
+  width: fit-content;
   display: flex;
   flex-direction: column;
 }
@@ -15,7 +16,6 @@ body {
 .board-container {
   display: flex;
   flex-direction: column;
-  width: fit-content;
 }
 
 .board-row {
@@ -107,12 +107,17 @@ body {
 }
 
 .info {
-  border: 2px solid #D1E8E0;
+  border: 4px solid #D1E8E0;
+  border-radius: 4px;
   width: 70px;
   height: 70px;
-  margin: 8px;
+}
+
+.info_side .info {
+  margin: 4px 0px 8px 8px;
 }
 
 .info_bottom .info {
+  margin: 8px;
   float: left;
 }
