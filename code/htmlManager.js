@@ -14,8 +14,10 @@ HTMLManager.prototype.setBoard = function (manager) {
   for  (r = 0; r < 5; r++) {
     for (c = 0; c < 5; c++) {
       var tile = this.boardContainer.children[r].children[c];
+      var new_tile = tile.cloneNode(true); //clone to remove event listeners
+      tile.parentNode.replaceChild(new_tile, tile);
+      var tile = this.boardContainer.children[r].children[c]; //get the new tile
       tile.pos = {row:r, col:c};
-      tile.removeEventListener("click", flip);
       tile.addEventListener("click", function flip () {
         this.classList.add('is-flipped');
         if ((value = manager.flip(this.pos)) == 0) {
