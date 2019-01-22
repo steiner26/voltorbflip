@@ -98,6 +98,7 @@ body {
 }
 
 .info {
+  border: 2px solid #D1E8E0;
   width: 70px;
   height: 70px;
   margin: 8px;
