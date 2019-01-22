@@ -3,8 +3,8 @@ function HTMLManager () {
   this.scoreContainer = document.querySelector(".score-container");
   // this.bestContainer    = document.querySelector(".best-container");
   this.messageContainer = document.querySelector(".game-message");
-  this.rowsInfoContainer = document.querySelector(".info_side");
-  this.colsInfoContainer = document.querySelector(".info_bottom");
+  this.rowsInfoContainer = document.querySelector(".info_rows");
+  this.colsInfoContainer = document.querySelector(".info_cols");
 }
 
 HTMLManager.prototype.setBoard = function (manager) {
