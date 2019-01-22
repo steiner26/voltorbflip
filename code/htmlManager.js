@@ -8,17 +8,18 @@ function HTMLManager () {
 }
 
 HTMLManager.prototype.setBoard = function (manager) {
+  $(".tile_back").removeClass("tile_back_bomb", "tile_back_1", "tile_back_2", "tile_back_3");
+  $(".tile").removeClass("is-flipped")
   for  (r = 0; r < 5; r++) {
     for (c = 0; c < 5; c++) {
       var tile = this.boardContainer.children[r].children[c];
       tile.pos = {row:r, col:c};
-      tile.classList.remove("is-flipped");
-      //remove the pre-existing classes for the tile back
       tile.addEventListener("click", function () {
         this.classList.add('is-flipped');
         if ((value = manager.flip(this.pos)) == 0) {
           this.children[1].classList.add("tile_back_bomb");
         } else {
+          console.log(value);
           this.children[1].classList.add("tile_back_"+value.toString());
         }
       });
