@@ -13,6 +13,7 @@ HTMLManager.prototype.setBoard = function (manager) {
       var tile = this.boardContainer.children[r].children[c];
       tile.pos = {row:r, col:c};
       tile.classList.remove("is-flipped");
+      //remove the pre-existing classes for the tile back
       tile.addEventListener("click", function () {
         this.classList.add('is-flipped');
         if ((value = manager.flip(this.pos)) == 0) {
