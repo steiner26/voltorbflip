@@ -2,10 +2,19 @@ body {
   background: #309F6A;
 }
 
+.game-container {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.game-row {
+  display: flex;
+}
+
 .board-container {
   display: flex;
   flex-direction: column;
-  margin: auto;
   width: fit-content;
 }
 
