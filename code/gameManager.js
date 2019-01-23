@@ -31,6 +31,6 @@ GameManager.prototype.gameWon = function () {
 }
 
 //Might not need
-GameManager.prototype.getTile = function (row, col) {
-  return this.board.tiles[row][col].value
+GameManager.prototype.getTile = function (pos) {
+  return this.board.tiles[pos.row][pos.col].value
 }
