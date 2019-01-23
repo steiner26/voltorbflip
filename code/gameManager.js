@@ -25,7 +25,7 @@ GameManager.prototype.flip = function (pos) {
 GameManager.prototype.gameWon = function () {
   this.totalPoints += this.currentPoints;
   this.currentPoints = 1;
-  this.level = Math.max(this.level+1, 7);
+  this.level = Math.min(this.level+1, 7);
   this.board = new Board(this.level);
   this.htmlManager.setBoard(this);
 }
