@@ -17,14 +17,17 @@ function HTMLManager () {
 HTMLManager.prototype.setBoard = function (manager) {
   $(".tile_back").removeClass("tile_back_bomb tile_back_1 tile_back_2 tile_back_3");
   $(".tile").removeClass("is-flipped")
-  $(".tile").off()
-  $(".tile").on("click", function () {
-    this.classList.add('is-flipped');
-    if ((value = manager.flip(this.pos)) == 0) {
+  $(".tile").each(function () {
+    if ((value = manager.getTile(this.pos)) == 0) {
       this.children[1].classList.add("tile_back_bomb");
     } else {
       this.children[1].classList.add("tile_back_"+value.toString());
     }
+  });
+  $(".tile").off()
+  $(".tile").on("click", function () {
+    this.classList.add('is-flipped');
+    manager.flip(this.pos)
   });
 
   for (i = 0; i < 5; i++) {
