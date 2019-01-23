@@ -5,30 +5,28 @@ function HTMLManager () {
   this.messageContainer = document.querySelector(".game-message");
   this.rowsInfoContainer = document.querySelector(".info_rows");
   this.colsInfoContainer = document.querySelector(".info_cols");
+  
+  for  (r = 0; r < 5; r++) {
+    for (c = 0; c < 5; c++) {
+      var tile = this.boardContainer.children[r].children[c];
+      tile.pos = {row:r, col:c};
+    }
+  }
 }
 
 HTMLManager.prototype.setBoard = function (manager) {
   $(".tile_back").removeClass("tile_back_bomb", "tile_back_1", "tile_back_2", "tile_back_3");
   $(".tile").removeClass("is-flipped")
-  // $(".tile").off()
-  for  (r = 0; r < 5; r++) {
-    for (c = 0; c < 5; c++) {
-      var tile = this.boardContainer.children[r].children[c];
-      var new_tile = tile.cloneNode(true); //clone to remove event listeners
-      tile.parentNode.replaceChild(new_tile, tile);
-      var tile = this.boardContainer.children[r].children[c]; //get the new tile
-      tile.pos = {row:r, col:c};
-      tile.addEventListener("click", function flip () {
-        this.classList.add('is-flipped');
-        if ((value = manager.flip(this.pos)) == 0) {
-          this.children[1].classList.add("tile_back_bomb");
-        } else {
-          console.log(value);
-          this.children[1].classList.add("tile_back_"+value.toString());
-        }
-      });
+  $(".tile").off()
+  $(".tile").on("click", function () {
+    this.classList.add('is-flipped');
+    if ((value = manager.flip(this.pos)) == 0) {
+      this.children[1].classList.add("tile_back_bomb");
+    } else {
+      console.log(value);
+      this.children[1].classList.add("tile_back_"+value.toString());
     }
-  }
+  });
 
   for (i = 0; i < 5; i++) {
     Rinfo = this.rowsInfoContainer.children[i];
