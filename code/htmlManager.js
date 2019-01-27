@@ -15,8 +15,8 @@ function HTMLManager () {
 }
 
 HTMLManager.prototype.setBoard = function (manager) {
-  $(".tile_back").removeClass("tile_back_bomb tile_back_1 tile_back_2 tile_back_3");
   $(".tile").removeClass("is-flipped")
+  $(".tile_back").removeClass("tile_back_bomb tile_back_1 tile_back_2 tile_back_3");
   $(".tile").each(function () {
     if ((value = manager.getTile(this.pos)) == 0) {
       this.children[1].classList.add("tile_back_bomb");

@@ -168,3 +168,16 @@ body {
   text-align: right;
   font-family: "Arial Black";
 }
+
+.game_message {
+  border: 1px solid blue;
+  border-radius: 4px;
+  position: absolute;
+  top: 46.5%;
+  left: 46.5%;
+  text-align: center;
+  padding: 75px;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  z-index: 1;
+}
