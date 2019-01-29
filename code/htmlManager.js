@@ -24,7 +24,6 @@ HTMLManager.prototype.setBoard = function (manager) {
       this.children[1].classList.add("tile_back_"+value.toString());
     }
   });
-  $(".tile").off()
   $(".tile").on("click", function () {
     this.classList.add('is-flipped');
     manager.flip(this.pos)
@@ -51,12 +50,13 @@ HTMLManager.prototype.gameWon = function (score, manager) {
   $(".game-message").on("click", function () {
     $(".game-message").off();
     $(".game-message").toggleClass("fadeInDown animated hidden");
+    $(".tile").off();
     $(".tile").addClass("is-flipped");
     setTimeout(function () {
       $("body").on("click", function () {
         $("body").off();
         manager.nextLevel();
-    }, 500)
-    });
+    })
+    }, 500);
   });
 }
