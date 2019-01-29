@@ -28,7 +28,6 @@ GameManager.prototype.nextLevel = function () {
   this.totalPoints += this.currentPoints;
   this.currentPoints = 0;
   this.level = Math.min(this.level+1, 7);
-  console.log(this);
   this.board = new Board(this.level);
   this.htmlManager.setBoard(this);
 }

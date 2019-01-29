@@ -57,7 +57,6 @@ HTMLManager.prototype.gameWon = function (score, manager) {
     // $(".game-message").addClass("hidden");
     $(".game-message").toggleClass("fadeInDown animated hidden");
     $(".tile").addClass("is-flipped");
-    console.log(manager);
-    setTimeout(function () {manager.nextLevel()}, 1000);
+    setTimeout(function () {manager.nextLevel()}, 2000);
   });
 }
