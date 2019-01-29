@@ -52,9 +52,11 @@ HTMLManager.prototype.gameWon = function (score, manager) {
     $(".game-message").off();
     $(".game-message").toggleClass("fadeInDown animated hidden");
     $(".tile").addClass("is-flipped");
-    $("body").on("click", function () {
-      $("body").off();
-      manager.nextLevel();
+    setTimeout(function () {
+      $("body").on("click", function () {
+        $("body").off();
+        manager.nextLevel();
+    }, 500)
     });
   });
 }
