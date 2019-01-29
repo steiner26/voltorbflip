@@ -12,7 +12,7 @@ GameManager.prototype.flip = function (pos) {
   if (result == 0) {
     //Game Lost
   } else if (result != null) {
-    this.currentPoints = (this.currentPoints ? result : this.currentPoints * result);
+    this.currentPoints = (this.currentPoints ? this.currentPoints * result : result);
     if (this.currentPoints == this.board.totalPoints) {
       this.gameWon();
     }
