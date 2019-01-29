@@ -45,3 +45,7 @@ HTMLManager.prototype.toTwoDigits = function (n) {
   return (n > 9 ? "" : "0") + n.toString();
 }
 
+HTMLManager.prototype.gameWon = function (score) {
+  this.messageContainer.innerHTML = "Game clear! You received " + score.toString() + " Coin(s)!";
+  this.messageContainer.classList.add(fadeInDown)
+}
