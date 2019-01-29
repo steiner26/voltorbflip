@@ -15,7 +15,8 @@ function HTMLManager () {
 }
 
 HTMLManager.prototype.setBoard = function (manager) {
-  $(".tile").removeClass("is-flipped")
+  $(".tile").removeClass("is-flipped");
+  $(".tile_front").addClass("clickable");
   $(".tile_back").removeClass("tile_back_bomb tile_back_1 tile_back_2 tile_back_3");
   $(".tile").each(function () {
     if ((value = manager.getTile(this.pos)) == 0) {
@@ -26,17 +27,17 @@ HTMLManager.prototype.setBoard = function (manager) {
   });
   $(".tile").on("click", function () {
     this.classList.add('is-flipped');
-    manager.flip(this.pos)
+    manager.flip(this.pos);
   });
 
   for (i = 0; i < 5; i++) {
     Rinfo = this.rowsInfoContainer.children[i];
     Rinfo.children[0].innerHTML = this.toTwoDigits(manager.board.rowsInfo[i].points);
-    Rinfo.children[1].innerHTML = manager.board.rowsInfo[i].bombs.toString()
+    Rinfo.children[1].innerHTML = manager.board.rowsInfo[i].bombs.toString();
 
     Cinfo = this.colsInfoContainer.children[i];
     Cinfo.children[0].innerHTML = this.toTwoDigits(manager.board.colsInfo[i].points);
-    Cinfo.children[1].innerHTML = manager.board.colsInfo[i].bombs.toString()
+    Cinfo.children[1].innerHTML = manager.board.colsInfo[i].bombs.toString();
   }
 }
 
@@ -47,6 +48,7 @@ HTMLManager.prototype.toTwoDigits = function (n) {
 HTMLManager.prototype.gameWon = function (score, manager) {
   this.messageContainer.innerHTML = "Game clear! You received " + score.toString() + " Coin(s)!";
   $(".game-message").toggleClass("fadeInDown animated hidden");
+  $(".tile_front").removeClass("clickable");
   $(".tile").off();
   $(".game-message").on("click", function () {
     $(".game-message").off();

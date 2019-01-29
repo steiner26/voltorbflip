@@ -58,7 +58,6 @@ body {
   background-image: url(images/blanktile.png);
   background-size: cover;
   background-position: center;
-  cursor: pointer;
 }
 
 .tile_back {
@@ -105,6 +104,10 @@ body {
   right: -6px;
   bottom: -6px;
   pointer-events: none;
+}
+
+.clickable {
+  cursor: pointer;
 }
 
 .info {
