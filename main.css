@@ -182,3 +182,7 @@ body {
   background-color: #fff;
   z-index: 1;
 }
+
+.hidden {
+  visibility: hidden;
+}
