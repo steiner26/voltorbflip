@@ -170,7 +170,7 @@ body {
   font-family: "Arial Black";
 }
 
-.game_message {
+.game-message {
   border: 1px solid blue;
   border-radius: 4px;
   position: absolute;

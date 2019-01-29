@@ -47,5 +47,5 @@ HTMLManager.prototype.toTwoDigits = function (n) {
 
 HTMLManager.prototype.gameWon = function (score) {
   this.messageContainer.innerHTML = "Game clear! You received " + score.toString() + " Coin(s)!";
-  this.messageContainer.classList.add(fadeInDown)
+  this.messageContainer.classList.add("fadeInDown");
 }
