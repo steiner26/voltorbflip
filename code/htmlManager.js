@@ -47,12 +47,12 @@ HTMLManager.prototype.toTwoDigits = function (n) {
 
 HTMLManager.prototype.gameWon = function (score, manager) {
   this.messageContainer.innerHTML = "Game clear! You received " + score.toString() + " Coin(s)!";
-  $(".game-message").toggleClass("fadeIn hidden");
+  $(".game-message").toggleClass("fadeIn animated hidden");
   $(".tile_front").removeClass("clickable");
   $(".tile").off();
   $(".game-message").on("click", function () {
     $(".game-message").off();
-    $(".game-message").toggleClass("fadeIn hidden");
+    $(".game-message").toggleClass("fadeIn animated hidden");
     $(".tile").addClass("is-flipped");
     setTimeout(function () {
       $("body").on("click", function () {

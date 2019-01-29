@@ -190,7 +190,7 @@ body {
   visibility: hidden;
 }
 
-@-webkit-keyframes fadeIn {
+/* @-webkit-keyframes fadeIn {
   from {
     opacity: 0;
   }
@@ -215,4 +215,4 @@ body {
   animation-name: fadeIn;
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
-}
+} */
