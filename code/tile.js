@@ -6,12 +6,7 @@ function Tile (position, value, flipped) {
 }
 
 Tile.prototype.flip = function () {
-  if (this.isFlipped) { 
-    return null 
-  } else {
-    this.isFlipped = true; 
-    return this.value
-  } 
+  this.isFlipped = true; 
 }
 
 Tile.prototype.toString = function () {

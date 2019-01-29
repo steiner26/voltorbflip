@@ -61,5 +61,5 @@ Board.prototype.setup = function (data) {
 }
 
 Board.prototype.flip = function (pos) {
-  return this.tiles[pos.row][pos.col].flip();
+  this.tiles[pos.row][pos.col].flip();
 }
