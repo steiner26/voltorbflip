@@ -45,7 +45,14 @@ HTMLManager.prototype.toTwoDigits = function (n) {
   return (n > 9 ? "" : "0") + n.toString();
 }
 
-HTMLManager.prototype.gameWon = function (score) {
+HTMLManager.prototype.gameWon = function (score, callback) {
   this.messageContainer.innerHTML = "Game clear! You received " + score.toString() + " Coin(s)!";
   this.messageContainer.classList.add("fadeInDown", "animated");
+  $(".game-message").on("click", function () {
+    $(".game-message").off();
+    $(".game-message").removeClass("fadeInDown animated");
+    $(".tile").addClass("is-flipped")
+    sleep(1000);
+    callback();
+  });
 }

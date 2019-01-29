@@ -21,12 +21,14 @@ GameManager.prototype.flip = function (pos) {
 }
 
 GameManager.prototype.gameWon = function () {
-  this.htmlManager.gameWon(this.currentPoints);
-  this.totalPoints += this.currentPoints;
-  this.currentPoints = 0;
-  this.level = Math.min(this.level+1, 7);
-  this.board = new Board(this.level);
-  this.htmlManager.setBoard(this);
+  this.htmlManager.gameWon(this.currentPoints, function () {
+    this.totalPoints += this.currentPoints;
+    this.currentPoints = 0;
+    this.level = Math.min(this.level+1, 7);
+    this.board = new Board(this.level);
+    this.htmlManager.setBoard(this);
+  });
+
 }
 
 //Might not need
