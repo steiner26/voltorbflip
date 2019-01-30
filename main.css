@@ -180,7 +180,7 @@ body {
   top: 50%;
   left: 50%;
   text-align: center;
-  padding: 75px;
+  padding: 60px 30px;
   transform: translate(-50%, -50%);
   background-color: #F8F8F8;
   z-index: 1;
