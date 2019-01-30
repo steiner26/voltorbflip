@@ -41,11 +41,22 @@ HTMLManager.prototype.setBoard = function (manager) {
     Cinfo.children[0].innerHTML = this.extend(manager.board.colsInfo[i].points, 2);
     Cinfo.children[1].innerHTML = manager.board.colsInfo[i].bombs.toString();
   }
+
+  document.getElementById("level").innerHTML = manager.level.toString();
+  document.getElementById("current-coins").innerHTML = "00000";
 }
 
 HTMLManager.prototype.extend = function (n, places) {
   num0 = Math.ceil(Math.log10(Math.pow(10, places-1)/n));
   return (num0 >= 0 ? "0".repeat(num0) + n.toString() : n.toString());
+}
+
+HTMLManager.prototype.setCurrentCoins = function (coins) {
+  document.getElementById("current-coins").innerHTML = extend(coins, 5);
+}
+
+HTMLManager.prototype.setTotalCoins = function (coins) {
+  document.getElementById("total-coins").innerHTML = extend(coins, 5);
 }
 
 HTMLManager.prototype.gameWon = function (score, manager) {
