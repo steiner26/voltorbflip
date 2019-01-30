@@ -189,7 +189,7 @@ body {
 .game-message:before {
   background: none;
   border: 2px solid black;
-  border-radius: 4px;
+  border-radius: 6px;
   z-index: -1;
   content: "";
   display: block;
