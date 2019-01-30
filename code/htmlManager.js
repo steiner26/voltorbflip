@@ -34,17 +34,19 @@ HTMLManager.prototype.setBoard = function (manager) {
 
   for (i = 0; i < 5; i++) {
     Rinfo = this.rowsInfoContainer.children[i];
-    Rinfo.children[0].innerHTML = this.toTwoDigits(manager.board.rowsInfo[i].points);
+    Rinfo.children[0].innerHTML = this.extend(manager.board.rowsInfo[i].points, 2);
     Rinfo.children[1].innerHTML = manager.board.rowsInfo[i].bombs.toString();
 
     Cinfo = this.colsInfoContainer.children[i];
-    Cinfo.children[0].innerHTML = this.toTwoDigits(manager.board.colsInfo[i].points);
+    Cinfo.children[0].innerHTML = this.extend(manager.board.colsInfo[i].points, 2);
     Cinfo.children[1].innerHTML = manager.board.colsInfo[i].bombs.toString();
   }
 }
 
-HTMLManager.prototype.toTwoDigits = function (n) {
-  return (n > 9 ? "" : "0") + n.toString();
+HTMLManager.prototype.extend = function (n, places) {
+  x = "0";
+  num0 = Math.ceil(Math.log10(Math.pow(10, places-1)/n));
+  return x.repeat(num0) + n.toString();
 }
 
 HTMLManager.prototype.gameWon = function (score, manager) {
