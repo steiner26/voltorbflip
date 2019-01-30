@@ -23,11 +23,11 @@ GameManager.prototype.flip = function (pos) {
 
 GameManager.prototype.gameWon = function () {
   this.htmlManager.gameWon(this.currentCoins, this);
-  this.htmlManager.setTotalCoins(this.totalCoins);
 }
 
 GameManager.prototype.nextLevel = function () {
   this.totalCoins += this.currentCoins;
+  this.htmlManager.setTotalCoins(this.totalCoins);
   this.currentCoins = 0;
   this.level = Math.min(this.level+1, 7);
   this.board = new Board(this.level);
