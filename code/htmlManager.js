@@ -18,17 +18,19 @@ HTMLManager.prototype.setBoard = function (manager) {
   $(".tile").removeClass("is-flipped");
   $(".tile_front").addClass("clickable");
   $(".tile_back").removeClass("tile_back_bomb tile_back_1 tile_back_2 tile_back_3");
-  $(".tile").each(function () {
-    if ((value = manager.getTile(this.pos)) == 0) {
-      this.children[1].classList.add("tile_back_bomb");
-    } else {
-      this.children[1].classList.add("tile_back_"+value.toString());
-    }
-  });
-  $(".tile").on("click", function () {
-    this.classList.add('is-flipped');
-    manager.flip(this.pos);
-  });
+  setTimeout(function () {
+    $(".tile").each(function () {
+      if ((value = manager.getTile(this.pos)) == 0) {
+        this.children[1].classList.add("tile_back_bomb");
+      } else {
+        this.children[1].classList.add("tile_back_"+value.toString());
+      }
+    });
+    $(".tile").on("click", function () {
+      this.classList.add('is-flipped');
+      manager.flip(this.pos);
+    });
+  }, 200);
 
   for (i = 0; i < 5; i++) {
     Rinfo = this.rowsInfoContainer.children[i];
