@@ -45,7 +45,7 @@ HTMLManager.prototype.setBoard = function (manager) {
 
 HTMLManager.prototype.extend = function (n, places) {
   num0 = Math.ceil(Math.log10(Math.pow(10, places-1)/n));
-  return "0".repeat(num0) + n.toString();
+  return (num0 >= 0 ? "0".repeat(num0) + n.toString() : n.toString());
 }
 
 HTMLManager.prototype.gameWon = function (score, manager) {
