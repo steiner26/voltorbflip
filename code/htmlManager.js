@@ -52,11 +52,11 @@ HTMLManager.prototype.extend = function (n, places) {
 }
 
 HTMLManager.prototype.setCurrentCoins = function (coins) {
-  document.getElementById("current-coins").innerHTML = extend(coins, 5);
+  document.getElementById("current-coins").innerHTML = this.extend(coins, 5);
 }
 
 HTMLManager.prototype.setTotalCoins = function (coins) {
-  document.getElementById("total-coins").innerHTML = extend(coins, 5);
+  document.getElementById("total-coins").innerHTML = this.extend(coins, 5);
 }
 
 HTMLManager.prototype.gameWon = function (score, manager) {
