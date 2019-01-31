@@ -55,11 +55,31 @@ HTMLManager.prototype.extend = function (n, places) {
 }
 
 HTMLManager.prototype.setCurrentCoins = function (coins) {
-  document.getElementById("current-coins").innerHTML = this.extend(coins, 5);
+  current = parseInt(document.querySelector("#current-coins").innerHTML);
+  if (coins > current) {
+    for (i = current+1; i<=coins; i++) {
+      setTimeout(function (x) {
+      document.querySelector("#current-coins").innerHTML = this.extend(x, 5);
+      console.log(i);
+      }, 5*i, i);
+    }
+  } else {
+    document.querySelector("#current-coins").innerHTML = this.extend(coins, 5);
+  }
 }
 
 HTMLManager.prototype.setTotalCoins = function (coins) {
-  document.getElementById("total-coins").innerHTML = this.extend(coins, 5);
+  current = parseInt(document.querySelector("#total-coins").innerHTML);
+  if (coins > current) {
+    for (i = current+1; i<=coins; i++) {
+      setTimeout(function (x) {
+      document.querySelector("#total-coins").innerHTML = this.extend(x, 5);
+      console.log(i);
+      }, 2*i, i);
+    }
+  } else {
+    document.querySelector("#total-coins").innerHTML = this.extend(coins, 5);
+  }
 }
 
 HTMLManager.prototype.gameOverMessage = function (coins, win, manager) {
