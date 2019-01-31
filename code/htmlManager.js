@@ -95,11 +95,18 @@ HTMLManager.prototype.displayNextLevel = function (nextlevel, difference, manage
   }
   hm = this;
   $(".game-message").toggleClass("fadeIn animated hidden");
-  $(".game-message").on("click", function () {
+
+  // $(".game-message").on("click", function () {
+  //   $(".game-message").off();
+  //   $(".game-message").toggleClass("fadeIn animated hidden");
+  //   hm.addListeners(manager);
+  // });
+
+  setTimeout(function () {
     $(".game-message").off();
     $(".game-message").toggleClass("fadeIn animated hidden");
     hm.addListeners(manager);
-  });
+  }, 2000);
 }
 
 HTMLManager.prototype.gameWon = function (score, nextlevel, manager) {
