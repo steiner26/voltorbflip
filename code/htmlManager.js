@@ -99,7 +99,7 @@ HTMLManager.prototype.displayNextLevel = function (nextlevel, difference, manage
     $(".game-message").toggleClass("fadeIn fadeOut");
     setTimeout(function () {
       $(".game-message").toggleClass("fadeOut animated hidden");
-    }, 1000)
+    }, 800)
     hm.addListeners(manager);
   }, 1000);
 }
