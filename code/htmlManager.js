@@ -78,7 +78,7 @@ HTMLManager.prototype.gameOverMessage = function (coins, win, manager) {
         $(".tile").removeClass("is-flipped");
         win ? manager.levelUp() : manager.levelDown();
       });
-    });
+    }, 500);
   });
 }
 
