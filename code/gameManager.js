@@ -28,10 +28,6 @@ GameManager.prototype.getTile = function (pos) {
   return this.board.tiles[pos.row][pos.col].value
 }
 
-GameManager.prototype.gameWon = function () {
-  this.htmlManager.gameWon(this.currentCoins, this.level + 1, this);
-}
-
 GameManager.prototype.levelUp = function () {
   this.totalCoins += this.currentCoins;
   this.htmlManager.setTotalCoins(this.totalCoins);
@@ -44,14 +40,6 @@ GameManager.prototype.levelUp = function () {
 
 GameManager.prototype.relative = function (x, n) {
   return -Math.sqrt(x)+Math.sqrt(n)+1
-}
-
-GameManager.prototype.gameLost = function () {
-  nextlevel = chance.weighted(
-    Array.from({ length: this.level }, (_, i) => i+1), 
-    Array.from({ length: this.level }, (_, i) => this.relative(i+1, this.level))
-    );
-  this.htmlManager.gameLost(nextlevel, this);
 }
 
 GameManager.prototype.levelDown = function () {

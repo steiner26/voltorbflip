@@ -93,76 +93,13 @@ HTMLManager.prototype.displayNextLevel = function (nextlevel, difference, manage
   } else {
     this.messageContainer.innerHTML = "Ready to play Game Lv. " + nextlevel.toString() + "!";
   }
-  hm = this;
   $(".game-message").toggleClass("fadeIn animated hidden");
-
-  // $(".game-message").on("click", function () {
-  //   $(".game-message").off();
-  //   $(".game-message").toggleClass("fadeIn animated hidden");
-  //   hm.addListeners(manager);
-  // });
-
+  hm = this;
   setTimeout(function () {
     $(".game-message").toggleClass("fadeIn fadeOut");
     setTimeout(function () {
       $(".game-message").toggleClass("fadeOut animated hidden");
     }, 1000)
     hm.addListeners(manager);
-  }, 2000);
-}
-
-HTMLManager.prototype.gameWon = function (score, nextlevel, manager) {
-  this.messageContainer.innerHTML = "Game clear! You received " + score.toString() + " Coin(s)!";
-  $(".game-message").toggleClass("fadeIn animated hidden");
-  $(".tile_front").removeClass("clickable");
-  $(".tile").off();
-  hm = this;
-  $(".game-message").on("click", function () {
-    $(".game-message").off();
-    $(".game-message").toggleClass("fadeIn animated hidden");
-    $(".tile").addClass("is-flipped");
-    setTimeout(function () {
-      $("body").on("click", function () {
-        $("body").off();
-        $(".tile").removeClass("is-flipped");
-        hm.messageContainer.innerHTML = "Advanced to Game Lv. " + nextlevel.toString() + "!";
-        $(".game-message").toggleClass("fadeIn animated hidden");
-        $(".game-message").on("click", function () {
-          $(".game-message").off();
-          $(".game-message").toggleClass("fadeIn animated hidden");
-          manager.levelUp();
-        });
-      });
-    }, 500);
-  });
-}
-
-HTMLManager.prototype.gameLost = function (nextlevel, manager) {
-  this.messageContainer.innerHTML = "Oh no! you get 0 Coins!";
-  $(".game-message").toggleClass("fadeIn animated hidden");
-  $(".tile_front").removeClass("clickable");
-  $(".tile").off();
-  hm = this;
-  $(".game-message").on("click", function () {
-    $(".game-message").off();
-    $(".game-message").toggleClass("fadeIn animated hidden");
-    $(".tile").addClass("is-flipped");
-    setTimeout(function () {
-      $("body").on("click", function () {
-        $("body").off();
-        $(".tile").removeClass("is-flipped");
-        if (document.getElementById("level").innerHTML != nextlevel.toString()) {
-          hm.messageContainer.innerHTML = "Dropped to Game Lv. " + nextlevel.toString() + "!";
-          $(".game-message").toggleClass("fadeIn animated hidden");
-          $(".game-message").on("click", function () {
-            $(".game-message").off();
-            $(".game-message").toggleClass("fadeIn animated hidden");
-            manager.levelDown(nextlevel);
-          });
-        } else {
-          manager.levelDown(nextlevel);
-        }
-      });
-    }, 500);
-  });
+  }, 1000);
 }
