@@ -196,8 +196,27 @@ body {
   visibility: hidden;
 }
 
-.score-container {
-  
+ .level-container, .total-coins, .current-coins {
+  padding: 5px;
+  border: 4px solid #D1E8E0;
+  border-radius: 4px;
+  background-color: #F8F8F8;
+  margin: 0px 10px;
+}
+
+.level-container:before, .total-coins:before, .current-coins:before {
+  background: none;
+  border: 2px solid black;
+  border-radius: 6px;
+  z-index: -1;
+  content: "";
+  display: block;
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  pointer-events: none;
 }
 
 .level-container {
