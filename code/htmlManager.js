@@ -61,8 +61,7 @@ HTMLManager.prototype.setCurrentCoins = function (coins) {
     for (i = current+1; i<=coins; i++) {
       setTimeout(function (x) {
       document.querySelector("#current-coins").innerHTML = hm.extend(x, 5);
-      console.log(i);
-      }, 5*i, i);
+      }, 10*i, i);
     }
   } else {
     document.querySelector("#current-coins").innerHTML = this.extend(coins, 5);
@@ -76,8 +75,7 @@ HTMLManager.prototype.setTotalCoins = function (coins) {
     for (i = current+1; i<=coins; i++) {
       setTimeout(function (x) {
       document.querySelector("#total-coins").innerHTML = hm.extend(x, 5);
-      console.log(i);
-      }, 2*i, i);
+      }, 5*i, i);
     }
   } else {
     document.querySelector("#total-coins").innerHTML = this.extend(coins, 5);
