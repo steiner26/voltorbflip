@@ -98,13 +98,17 @@ HTMLManager.prototype.gameLost = function (nextlevel, manager) {
       $("body").on("click", function () {
         $("body").off();
         $(".tile").removeClass("is-flipped");
-        hm.messageContainer.innerHTML = "Dropped to Game Lv. " + nextlevel.toString() + "!";
-        $(".game-message").toggleClass("fadeIn animated hidden");
-        $(".game-message").on("click", function () {
-          $(".game-message").off();
+        if (document.getElementById("level").innerHTML != nextlevel.toString()) {
+          hm.messageContainer.innerHTML = "Dropped to Game Lv. " + nextlevel.toString() + "!";
           $(".game-message").toggleClass("fadeIn animated hidden");
+          $(".game-message").on("click", function () {
+            $(".game-message").off();
+            $(".game-message").toggleClass("fadeIn animated hidden");
+            manager.levelDown(nextlevel);
+          });
+        } else {
           manager.levelDown(nextlevel);
-        });
+        }
       });
     }, 500);
   });

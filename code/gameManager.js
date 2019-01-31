@@ -26,7 +26,7 @@ GameManager.prototype.getTile = function (pos) {
 }
 
 GameManager.prototype.gameWon = function () {
-  this.htmlManager.gameWon(this.currentCoins, this);
+  this.htmlManager.gameWon(this.currentCoins, this.level + 1, this);
 }
 
 GameManager.prototype.levelUp = function () {
