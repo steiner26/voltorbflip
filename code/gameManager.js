@@ -39,7 +39,7 @@ GameManager.prototype.levelUp = function () {
   this.level = Math.min(this.level+1, 7);
   this.board = new Board(this.level);
   this.htmlManager.setBoard(this);
-  this.htmlManager.displayNextLevel(this.level, 1);
+  this.htmlManager.displayNextLevel(this.level, 1, this);
 }
 
 GameManager.prototype.relative = function (x, n) {
@@ -64,5 +64,5 @@ GameManager.prototype.levelDown = function () {
   this.level = nextlevel;
   this.board = new Board(this.level);
   this.htmlManager.setBoard(this);
-  this.htmlManager.displayNextLevel(this.level, difference);
+  this.htmlManager.displayNextLevel(this.level, difference, this);
 }

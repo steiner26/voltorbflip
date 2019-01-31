@@ -82,7 +82,7 @@ HTMLManager.prototype.gameOverMessage = function (coins, win, manager) {
   });
 }
 
-HTMLManager.prototype.displayNextLevel = function (nextlevel, difference) {
+HTMLManager.prototype.displayNextLevel = function (nextlevel, difference, manager) {
   if (difference > 0) {
     this.messageContainer.innerHTML = "Advanced to Game Lv. " + nextlevel.toString() + "!";
   } else if (difference < 0) {
@@ -95,7 +95,7 @@ HTMLManager.prototype.displayNextLevel = function (nextlevel, difference) {
   $(".game-message").on("click", function () {
     $(".game-message").off();
     $(".game-message").toggleClass("fadeIn animated hidden");
-    hm.addListeners();
+    hm.addListeners(manager);
   });
 }
 
