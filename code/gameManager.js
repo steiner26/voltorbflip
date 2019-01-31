@@ -3,6 +3,7 @@ function GameManager (Manager) {
   this.level = 1
   this.board = new Board(this.level);
   this.htmlManager.setBoard(this);
+  this.htmlManager.addListeners(this);
   this.totalCoins = 0;
   this.currentCoins = 0;
 }
