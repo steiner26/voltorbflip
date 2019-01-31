@@ -79,7 +79,7 @@ HTMLManager.prototype.gameWon = function (score, nextlevel, manager) {
           $(".game-message").toggleClass("fadeIn animated hidden");
           manager.levelUp();
         });
-    })
+      });
     }, 500);
   });
 }
@@ -104,8 +104,7 @@ HTMLManager.prototype.gameLost = function (nextlevel, manager) {
           $(".game-message").toggleClass("fadeIn animated hidden");
           manager.levelDown(nextlevel);
         });
-
-    })
+      });
     }, 500);
   });
 }

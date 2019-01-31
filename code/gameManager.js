@@ -45,7 +45,7 @@ GameManager.prototype.relative = function (x, n) {
 GameManager.prototype.gameLost = function () {
   nextlevel = chance.weighted(
     Array.from({ length: this.level }, (_, i) => i+1), 
-    Array.from({ length: this.level }, (_, i) => this.relative(i+1, n))
+    Array.from({ length: this.level }, (_, i) => this.relative(i+1, this.level))
     );
   this.htmlManager.gameLost(nextlevel, this);
 }
