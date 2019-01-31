@@ -15,21 +15,14 @@ function HTMLManager () {
 }
 
 HTMLManager.prototype.setBoard = function (manager) {
-  $(".tile_front").addClass("clickable");
   $(".tile_back").removeClass("tile_back_bomb tile_back_1 tile_back_2 tile_back_3");
-  setTimeout(function () {
-    $(".tile").each(function () {
-      if ((value = manager.getTile(this.pos)) == 0) {
-        this.children[1].classList.add("tile_back_bomb");
-      } else {
-        this.children[1].classList.add("tile_back_"+value.toString());
-      }
-    });
-    $(".tile").on("click", function () {
-      this.classList.add('is-flipped');
-      manager.flip(this.pos);
-    });
-  }, 200);
+  $(".tile").each(function () {
+    if ((value = manager.getTile(this.pos)) == 0) {
+      this.children[1].classList.add("tile_back_bomb");
+    } else {
+      this.children[1].classList.add("tile_back_"+value.toString());
+    }
+  });
 
   for (i = 0; i < 5; i++) {
     Rinfo = this.rowsInfoContainer.children[i];
@@ -45,6 +38,14 @@ HTMLManager.prototype.setBoard = function (manager) {
   document.getElementById("current-coins").innerHTML = "00000";
 }
 
+HTMLManager.prototype.addListeners = function (manager) {
+  $(".tile_front").addClass("clickable");
+  $(".tile").on("click", function () {
+    this.classList.add('is-flipped');
+    manager.flip(this.pos);
+  });
+}
+
 HTMLManager.prototype.extend = function (n, places) {
   num0 = Math.ceil(Math.log10(Math.pow(10, places-1)/n));
   return (num0 >= 0 ? "0".repeat(num0) + n.toString() : n.toString());
@@ -56,6 +57,42 @@ HTMLManager.prototype.setCurrentCoins = function (coins) {
 
 HTMLManager.prototype.setTotalCoins = function (coins) {
   document.getElementById("total-coins").innerHTML = this.extend(coins, 5);
+}
+
+HTMLManager.prototype.gameOverMessage = function (coins, win, manager) {
+  if (coins) {
+    this.messageContainer.innerHTML = "Game clear! You received " + coins.toString() + " Coin(s)!";
+  } else {
+    this.messageContainer.innerHTML = "Oh no! you get 0 Coins!";
+  }
+  $(".game-message").toggleClass("fadeIn animated hidden");
+  $(".tile_front").removeClass("clickable");
+  $(".tile").off();
+  $(".game-message").on("click", function () {
+    $(".game-message").off();
+    $(".game-message").toggleClass("fadeIn animated hidden");
+    $(".tile").addClass("is-flipped");
+    $("body").on("click", function () {
+      $("body").off();
+      $(".tile").removeClass("is-flipped");
+      win ? manager.levelUp() : manager.levelDown();
+    });
+  });
+}
+
+HTMLManager.prototype.displayNextLevel = function (nextlevel, difference) {
+  if (difference > 0) {
+    this.messageContainer.innerHTML = "Advanced to Game Lv. " + nextlevel.toString() + "!";
+  } else if (difference < 0) {
+    this.messageContainer.innerHTML = "Dropped to Game Lv. " + nextlevel.toString() + "!";
+  } else {
+    this.messageContainer.innerHTML = "Ready to play Game Lv. " + nextlevel.toString() + "!";
+  }
+  $(".game-message").toggleClass("fadeIn animated hidden");
+  $(".game-message").on("click", function () {
+    console.log(this);
+    this.addListeners();
+  });
 }
 
 HTMLManager.prototype.gameWon = function (score, nextlevel, manager) {
