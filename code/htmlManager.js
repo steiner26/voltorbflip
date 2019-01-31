@@ -90,6 +90,8 @@ HTMLManager.prototype.displayNextLevel = function (nextlevel, difference) {
   }
   $(".game-message").toggleClass("fadeIn animated hidden");
   $(".game-message").on("click", function () {
+    $(".game-message").off();
+    $(".game-message").toggleClass("fadeIn animated hidden");
     console.log(this);
     this.addListeners();
   });
