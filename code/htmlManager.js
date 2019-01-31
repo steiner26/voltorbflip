@@ -71,18 +71,20 @@ HTMLManager.prototype.gameOverMessage = function (coins, win, manager) {
   $(".game-message").toggleClass("fadeIn animated hidden clickable");
   $(".tile_front").removeClass("clickable");
   $(".tile").off();
-  $("body").on("click", function () {
-    $("body").off();
-    $(".game-message").toggleClass("fadeIn animated hidden clickable");
-    $(".tile").addClass("is-flipped");
-    setTimeout(function () {
-      $("body").on("click", function () {
-        $("body").off();
-        $(".tile").removeClass("is-flipped");
-        win ? manager.levelUp() : manager.levelDown();
-      });
-    }, 500);
-  });
+  setTimeout(function () {
+    $("body").on("click", function () {
+      $("body").off();
+      $(".game-message").toggleClass("fadeIn animated hidden clickable");
+      $(".tile").addClass("is-flipped");
+      setTimeout(function () {
+        $("body").on("click", function () {
+          $("body").off();
+          $(".tile").removeClass("is-flipped");
+          win ? manager.levelUp() : manager.levelDown();
+        });
+      }, 500);
+    });
+  }, 500);
 }
 
 HTMLManager.prototype.displayNextLevel = function (nextlevel, difference, manager) {
