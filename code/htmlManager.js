@@ -71,8 +71,8 @@ HTMLManager.prototype.gameOverMessage = function (coins, win, manager) {
   $(".game-message").toggleClass("fadeIn animated hidden clickable");
   $(".tile_front").removeClass("clickable");
   $(".tile").off();
-  $(".body").on("click", function () {
-    $(".body").off();
+  $("body").on("click", function () {
+    $("body").off();
     $(".game-message").toggleClass("fadeIn animated hidden clickable");
     $(".tile").addClass("is-flipped");
     setTimeout(function () {
