@@ -47,6 +47,9 @@ HTMLManager.prototype.addListeners = function (manager) {
 }
 
 HTMLManager.prototype.extend = function (n, places) {
+  if (n == 0) {
+    return "0".repeat(places);
+  }
   num0 = Math.ceil(Math.log10(Math.pow(10, places-1)/n));
   return (num0 >= 0 ? "0".repeat(num0) + n.toString() : n.toString());
 }
