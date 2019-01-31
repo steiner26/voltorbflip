@@ -68,12 +68,12 @@ HTMLManager.prototype.gameOverMessage = function (coins, win, manager) {
   } else {
     this.messageContainer.innerHTML = "Oh no! you get 0 Coins!";
   }
-  $(".game-message").toggleClass("fadeIn animated hidden");
+  $(".game-message").toggleClass("fadeIn animated hidden clickable");
   $(".tile_front").removeClass("clickable");
   $(".tile").off();
   $(".game-message").on("click", function () {
     $(".game-message").off();
-    $(".game-message").toggleClass("fadeIn animated hidden");
+    $(".game-message").toggleClass("fadeIn animated hidden clickable");
     $(".tile").addClass("is-flipped");
     setTimeout(function () {
       $("body").on("click", function () {
