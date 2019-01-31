@@ -90,12 +90,12 @@ HTMLManager.prototype.displayNextLevel = function (nextlevel, difference) {
   } else {
     this.messageContainer.innerHTML = "Ready to play Game Lv. " + nextlevel.toString() + "!";
   }
+  hm = this;
   $(".game-message").toggleClass("fadeIn animated hidden");
   $(".game-message").on("click", function () {
     $(".game-message").off();
     $(".game-message").toggleClass("fadeIn animated hidden");
-    console.log(this);
-    this.addListeners();
+    hm.addListeners();
   });
 }
 
