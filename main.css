@@ -199,6 +199,7 @@ body {
 .score-container {
   width: 50%;
   margin: auto;
+  display: flex;
 }
 
  .level-container, .total-coins, .current-coins {
@@ -207,6 +208,7 @@ body {
   border-radius: 4px;
   background-color: #F8F8F8;
   margin: 5px 15px;
+  font-size: 20px;
   /* position: relative; */
 }
 
