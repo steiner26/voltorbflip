@@ -59,11 +59,12 @@ HTMLManager.prototype.setTotalCoins = function (coins) {
   document.getElementById("total-coins").innerHTML = this.extend(coins, 5);
 }
 
-HTMLManager.prototype.gameWon = function (score, manager) {
+HTMLManager.prototype.gameWon = function (score, nextlevel, manager) {
   this.messageContainer.innerHTML = "Game clear! You received " + score.toString() + " Coin(s)!";
   $(".game-message").toggleClass("fadeIn animated hidden");
   $(".tile_front").removeClass("clickable");
   $(".tile").off();
+  hm = this;
   $(".game-message").on("click", function () {
     $(".game-message").off();
     $(".game-message").toggleClass("fadeIn animated hidden");
@@ -71,7 +72,39 @@ HTMLManager.prototype.gameWon = function (score, manager) {
     setTimeout(function () {
       $("body").on("click", function () {
         $("body").off();
-        manager.nextLevel();
+        hm.messageContainer.innerHTML = "Advanced to Game Lv. " + nextlevel.toString() + "!";
+        $(".game-message").toggleClass("fadeIn animated hidden");
+        $(".game-message").on("click", function () {
+          $(".game-message").off();
+          $(".game-message").toggleClass("fadeIn animated hidden");
+          manager.levelUp();
+        });
+    })
+    }, 500);
+  });
+}
+
+HTMLManager.prototype.gameLost = function (nextlevel, manager) {
+  this.messageContainer.innerHTML = "Oh no! you get 0 Coins!";
+  $(".game-message").toggleClass("fadeIn animated hidden");
+  $(".tile_front").removeClass("clickable");
+  $(".tile").off();
+  hm = this;
+  $(".game-message").on("click", function () {
+    $(".game-message").off();
+    $(".game-message").toggleClass("fadeIn animated hidden");
+    $(".tile").addClass("is-flipped");
+    setTimeout(function () {
+      $("body").on("click", function () {
+        $("body").off();
+        hm.messageContainer.innerHTML = "Dropped to Game Lv. " + nextlevel.toString() + "!";
+        $(".game-message").toggleClass("fadeIn animated hidden");
+        $(".game-message").on("click", function () {
+          $(".game-message").off();
+          $(".game-message").toggleClass("fadeIn animated hidden");
+          manager.levelDown(nextlevel);
+        });
+
     })
     }, 500);
   });
