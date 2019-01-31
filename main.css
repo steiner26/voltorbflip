@@ -198,7 +198,7 @@ body {
 
  .level-container, .total-coins, .current-coins {
   padding: 5px;
-  border: 4px solid #D1E8E0;
+  border: 2px solid #D1E8E0;
   border-radius: 4px;
   background-color: #F8F8F8;
   margin: 5px 15px;
