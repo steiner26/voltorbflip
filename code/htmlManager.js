@@ -58,14 +58,11 @@ HTMLManager.prototype.setCurrentCoins = function (coins) {
   current = parseInt(document.querySelector("#current-coins").innerHTML);
   if (coins > current) {
     hm = this;
-    for (i = current+1; i<=coins; i+=3) {
+    for (i = current+1; i<=coins; i++) {
       setTimeout(function (x) {
       document.querySelector("#current-coins").innerHTML = hm.extend(x, 5);
       }, 5*i, i);
     }
-    setTimeout(function (x) {
-      document.querySelector("#current-coins").innerHTML = hm.extend(coins, 5);
-    }, 5*(coins-current)/3, i);
   } else {
     document.querySelector("#current-coins").innerHTML = this.extend(coins, 5);
   }
@@ -75,14 +72,11 @@ HTMLManager.prototype.setTotalCoins = function (coins) {
   current = parseInt(document.querySelector("#total-coins").innerHTML);
   if (coins > current) {
     hm = this;
-    for (i = current+1; i<=coins; i+=6) {
+    for (i = current+1; i<=coins; i++) {
       setTimeout(function (x) {
       document.querySelector("#total-coins").innerHTML = hm.extend(x, 5);
       }, 5*i, i);
     }
-    setTimeout(function (x) {
-      document.querySelector("#total-coins").innerHTML = hm.extend(coins, 5);
-    }, 5*(coins-current)/6, i);
   } else {
     document.querySelector("#total-coins").innerHTML = this.extend(coins, 5);
   }
