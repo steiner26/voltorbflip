@@ -15,7 +15,6 @@ function HTMLManager () {
 }
 
 HTMLManager.prototype.setBoard = function (manager) {
-  $(".tile").removeClass("is-flipped");
   $(".tile_front").addClass("clickable");
   $(".tile_back").removeClass("tile_back_bomb tile_back_1 tile_back_2 tile_back_3");
   setTimeout(function () {
@@ -72,6 +71,7 @@ HTMLManager.prototype.gameWon = function (score, nextlevel, manager) {
     setTimeout(function () {
       $("body").on("click", function () {
         $("body").off();
+        $(".tile").removeClass("is-flipped");
         hm.messageContainer.innerHTML = "Advanced to Game Lv. " + nextlevel.toString() + "!";
         $(".game-message").toggleClass("fadeIn animated hidden");
         $(".game-message").on("click", function () {
@@ -97,6 +97,7 @@ HTMLManager.prototype.gameLost = function (nextlevel, manager) {
     setTimeout(function () {
       $("body").on("click", function () {
         $("body").off();
+        $(".tile").removeClass("is-flipped");
         hm.messageContainer.innerHTML = "Dropped to Game Lv. " + nextlevel.toString() + "!";
         $(".game-message").toggleClass("fadeIn animated hidden");
         $(".game-message").on("click", function () {
