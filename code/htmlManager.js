@@ -57,9 +57,10 @@ HTMLManager.prototype.extend = function (n, places) {
 HTMLManager.prototype.setCurrentCoins = function (coins) {
   current = parseInt(document.querySelector("#current-coins").innerHTML);
   if (coins > current) {
+    hm = this;
     for (i = current+1; i<=coins; i++) {
       setTimeout(function (x) {
-      document.querySelector("#current-coins").innerHTML = this.extend(x, 5);
+      document.querySelector("#current-coins").innerHTML = hm.extend(x, 5);
       console.log(i);
       }, 5*i, i);
     }
@@ -71,9 +72,10 @@ HTMLManager.prototype.setCurrentCoins = function (coins) {
 HTMLManager.prototype.setTotalCoins = function (coins) {
   current = parseInt(document.querySelector("#total-coins").innerHTML);
   if (coins > current) {
+    hm = this;
     for (i = current+1; i<=coins; i++) {
       setTimeout(function (x) {
-      document.querySelector("#total-coins").innerHTML = this.extend(x, 5);
+      document.querySelector("#total-coins").innerHTML = hm.extend(x, 5);
       console.log(i);
       }, 2*i, i);
     }
