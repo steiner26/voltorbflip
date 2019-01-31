@@ -72,10 +72,12 @@ HTMLManager.prototype.gameOverMessage = function (coins, win, manager) {
     $(".game-message").off();
     $(".game-message").toggleClass("fadeIn animated hidden");
     $(".tile").addClass("is-flipped");
-    $("body").on("click", function () {
-      $("body").off();
-      $(".tile").removeClass("is-flipped");
-      win ? manager.levelUp() : manager.levelDown();
+    setTimeout(function () {
+      $("body").on("click", function () {
+        $("body").off();
+        $(".tile").removeClass("is-flipped");
+        win ? manager.levelUp() : manager.levelDown();
+      });
     });
   });
 }
