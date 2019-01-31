@@ -103,7 +103,10 @@ HTMLManager.prototype.displayNextLevel = function (nextlevel, difference, manage
   // });
 
   setTimeout(function () {
-    $(".game-message").toggleClass("fadeIn fadeOut hidden");
+    $(".game-message").toggleClass("fadeIn fadeOut");
+    setTimeout(function () {
+      $(".game-message").toggleClass("fadeOut animated hidden");
+    }, 1000)
     hm.addListeners(manager);
   }, 2000);
 }
