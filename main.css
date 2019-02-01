@@ -265,6 +265,11 @@ body {
   pointer-events: none;
 }
 
+.about u {
+  text-align: center;
+  font-size: 50px;
+}
+
 hr {
   border: none;
   border-bottom: 1px solid #D1E8E0;
