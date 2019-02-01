@@ -241,8 +241,8 @@ body {
 
 .about {
   width: 50%;
-  margin: auto;
-  margin-top: 100px;
+  margin: 50px auto;
+  font-size: 20px;
 }
 
 hr {
