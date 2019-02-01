@@ -29,7 +29,7 @@ GameManager.prototype.getTile = function (pos) {
 }
 
 GameManager.prototype.levelUp = function () {
-  this.totalCoins += this.currentCoins;
+  this.totalCoins = Math.min(this.totalcoins+this.currentCoins, 99999);
   this.htmlManager.setTotalCoins(this.totalCoins);
   this.currentCoins = 0;
   oldlevel = this.level;
