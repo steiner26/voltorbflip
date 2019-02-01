@@ -117,12 +117,12 @@ HTMLManager.prototype.displayNextLevel = function (nextlevel, difference, manage
     this.messageContainer.innerHTML = "Ready to play Game Lv. " + nextlevel.toString() + "!";
   }
   $(".game-message").toggleClass("fadeIn animated hidden");
+  hm = this;
   $("body").on("click", function () {
     $("body").off();
     $(".game-message").addClass("hidden");
-    this.addListeners(manager);
+    hm.addListeners(manager);
   });
-  hm = this;
   setTimeout(function () {
     $(".game-message").toggleClass("fadeIn fadeOut");
     setTimeout(function () {
