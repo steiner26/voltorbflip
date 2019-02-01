@@ -238,3 +238,16 @@ body {
 .current-coins {
 
 }
+
+.about {
+  width: 50%;
+  margin: auto;
+  margin-top: 100px;
+}
+
+hr {
+  border: none;
+  border-bottom: 1px solid #D1E8E0;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
