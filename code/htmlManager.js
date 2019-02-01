@@ -40,6 +40,7 @@ HTMLManager.prototype.setBoard = function (manager) {
 
 HTMLManager.prototype.addListeners = function (manager) {
   $(".tile_front").addClass("clickable");
+  $(".tile").off();
   $(".tile").on("click", function () {
     this.classList.add('is-flipped');
     manager.flip(this.pos);
@@ -119,6 +120,7 @@ HTMLManager.prototype.displayNextLevel = function (nextlevel, difference, manage
   $("body").on("click", function () {
     $("body").off();
     $(".game-message").addClass("hidden");
+    this.addListeners(manager);
   });
   hm = this;
   setTimeout(function () {
