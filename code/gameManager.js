@@ -32,10 +32,11 @@ GameManager.prototype.levelUp = function () {
   this.totalCoins += this.currentCoins;
   this.htmlManager.setTotalCoins(this.totalCoins);
   this.currentCoins = 0;
+  oldlevel = this.level;
   this.level = Math.min(this.level+1, 7);
   this.board = new Board(this.level);
   this.htmlManager.setBoard(this);
-  this.htmlManager.displayNextLevel(this.level, 1, this);
+  this.htmlManager.displayNextLevel(this.level, this.level-oldlevel, this);
 }
 
 GameManager.prototype.relative = function (x, n) {
