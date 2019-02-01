@@ -240,12 +240,12 @@ body {
 }
 
 .about {
-  padding: 15px;
+  padding: 0px 15px 15px 15px;
   border: 4px solid #D1E8E0;
   border-radius: 4px;
   background-color: #F8F8F8;
   width: 50%;
-  margin: 15px auto 50px auto;
+  margin: 20px auto 50px auto;
   font-size: 20px;
   position: relative;
 }
