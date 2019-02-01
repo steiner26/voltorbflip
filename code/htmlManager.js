@@ -103,9 +103,9 @@ HTMLManager.prototype.gameOverMessage = function (coins, win, manager) {
           $(".tile").removeClass("is-flipped");
           win ? manager.levelUp() : manager.levelDown();
         });
-      }, 500);
+      }, 100);
     });
-  }, 500);
+  }, 100);
 }
 
 HTMLManager.prototype.displayNextLevel = function (nextlevel, difference, manager) {
