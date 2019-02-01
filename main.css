@@ -171,7 +171,7 @@ body {
   top: 50%;
   left: 50%;
   text-align: center;
-  padding: 60px 30px;
+  padding: 60px 20px;
   transform: translate(-50%, -50%);
   background-color: #F8F8F8;
   z-index: 1;
@@ -207,7 +207,7 @@ body {
   border: 2px solid #D1E8E0;
   border-radius: 4px;
   background-color: #F8F8F8;
-  margin: 5px 15px 15px 15px;
+  margin: 5px 15px 10px 15px;
   font-size: 20px;
   /* position: relative; */
 }
