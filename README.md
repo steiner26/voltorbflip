@@ -1,6 +1,6 @@
 # VoltorbFlip
 
-This is an online recreatation of the Voltorb Flip game that appeared in the Game 
+This is an online recreation of the Voltorb Flip game that appeared in the Game 
 Corner in Korean and Western releases of Pokémon HeartGold and SoulSilver. 
 As an avid Pokémon fan who enjoys puzzle games, I decided to recreate the 
 minigame for the web as a way to learn HTML, CSS and JavaScript.
