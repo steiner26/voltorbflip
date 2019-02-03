@@ -275,3 +275,11 @@ hr {
   border-bottom: 1px solid #D1E8E0;
   margin: 25px 0px;
 }
+
+a:link, a:visited {
+  color: rgb(151, 211, 151);
+}
+
+a:hover {
+  color: green;
+}
