@@ -93,13 +93,11 @@ HTMLManager.prototype.gameOverMessage = function (coins, win, manager) {
   $(".tile_front").removeClass("clickable");
   $(".tile").off();
   setTimeout(function () {
-    $("body").on("click", function () {
-      $("body").off();
+    $("body").one("click", function () {
       $(".game-message").toggleClass("fadeIn animated hidden clickable");
       $(".tile").addClass("is-flipped");
       setTimeout(function () {
-        $("body").on("click", function () {
-          $("body").off();
+        $("body").one("click", function () {
           $(".tile").removeClass("is-flipped");
           win ? manager.levelUp() : manager.levelDown();
         });
@@ -118,8 +116,7 @@ HTMLManager.prototype.displayNextLevel = function (nextlevel, difference, manage
   }
   $(".game-message").toggleClass("fadeIn animated hidden");
   hm = this;
-  $("body").on("click", function () {
-    $("body").off();
+  $("body").one("click", function () {
     $(".game-message").addClass("hidden");
     hm.addListeners(manager);
   });
