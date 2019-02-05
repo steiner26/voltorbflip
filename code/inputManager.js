@@ -23,7 +23,7 @@ InputManager.prototype.listen = function (manager) {
     if (!modifiers) {
       if (dir != undefined) {
         event.preventDefault();
-        manager.updateCursorPos(dir);
+        manager.updateCursor(dir);
       } else if (event.which == 13) {
         $(".cursor").trigger("click");
       }

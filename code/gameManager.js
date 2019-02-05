@@ -39,7 +39,7 @@ GameManager.prototype.getTile = function (pos) {
   return this.board.tiles[pos.row][pos.col].value
 }
 
-GameManager.prototype.updateCursorPos = function (dir) {
+GameManager.prototype.updateCursor = function (dir) {
   if (this.cursorPos) {
     switch (dir) {
       case 0: //up
@@ -59,7 +59,7 @@ GameManager.prototype.updateCursorPos = function (dir) {
   this.htmlManager.setCursor(this);
 }
 
-GameManager.prototype.resetCursorPos = function () {
+GameManager.prototype.resetCursor = function () {
   this.cursorPos = {row:0, col:0};
   this.htmlManager.setCursor(this);
 }
@@ -91,7 +91,7 @@ GameManager.prototype.levelDown = function () {
   this.level = nextlevel;
   this.board = new Board(this.level);
   this.gameOver = false;
-  this.resetCursorPos();
+  this.resetCursor();
   this.htmlManager.setBoard(this);
   this.htmlManager.displayNextLevel(this.level, difference, this);
 }
