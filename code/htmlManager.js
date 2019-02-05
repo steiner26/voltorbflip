@@ -48,11 +48,13 @@ HTMLManager.prototype.setBoard = function (manager) {
 }
 
 HTMLManager.prototype.addListeners = function (manager) {
+  hm = this;
   $(".tile_front").addClass("clickable");
   $(".tile").off();
   $(".tile").on("click", function () {
     this.classList.add('is-flipped');
     manager.flip(this.pos);
+    hm.setCursor(this.pos);
   });
 }
 
@@ -92,7 +94,7 @@ HTMLManager.prototype.setTotalCoins = function (coins) {
   }
 }
 
-HTMLManager.prototype.setCursor = function () {
+HTMLManager.prototype.displayCursor = function () {
   $(".tile").removeClass("cursor");
   if (pos = this.cursorPos) {
     if (pos.col != 5) {
@@ -121,17 +123,21 @@ HTMLManager.prototype.updateCursor = function (dir) {
         this.cursorPos.col = (this.cursorPos.col + (-dir+2) + 6)%6;
         break;
     }
-    this.setCursor();
+    this.displayCursor();
   } else if (!this.gameOver) {
     this.cursorPos = {row:0, col:0};
-    this.setCursor();
+    this.displayCursor();
   }
-  
+}
+
+HTMLManager.prototype.setCursor = function (pos) {
+  this.cursorPos = pos;
+  this.displayCursor()
 }
 
 HTMLManager.prototype.resetCursor = function () {
   this.cursorPos = {row:0, col:0};
-  this.setCursor();
+  this.displayCursor();
 }
 
 HTMLManager.prototype.gameOverMessage = function (coins, win, manager) {
