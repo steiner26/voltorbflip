@@ -55,7 +55,7 @@ GameManager.prototype.updateCursor = function (dir) {
         this.cursorPos.col = (this.cursorPos.col + (-dir+2))%6;
         break;
     }
-  } else {
+  } else if (!this.gameOver) {
     this.cursorPos = {row:0, col:0};
   }
   this.htmlManager.setCursor(this);
@@ -74,7 +74,7 @@ GameManager.prototype.levelUp = function () {
   this.level = Math.min(this.level+1, 7);
   this.board = new Board(this.level);
   this.gameOver = false;
-  this.resetCursorPos();
+  this.resetCursor();
   this.htmlManager.setBoard(this);
   this.htmlManager.displayNextLevel(this.level, this.level-oldlevel, this);
 }
