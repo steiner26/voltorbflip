@@ -154,7 +154,8 @@ HTMLManager.prototype.gameOverMessage = function (coins, win, manager) {
   setTimeout(function () {
     hm.clearCursor();
     $(document).one("click", function () {
-      $(".game-message").toggleClass("fadeIn animated hidden clickable");
+      $(".game-message").toggleClass("fadeIn animated hidden");
+      $("body").addClass("clickable");
       $(".tile").addClass("is-flipped");
       setTimeout(function () {
         $(document).one("click", function () {
@@ -178,15 +179,19 @@ HTMLManager.prototype.displayNextLevel = function (nextlevel, difference, manage
   var hm = this;
   $(document).one("click", function () {
     $(".game-message").addClass("hidden");
-    hm.addListeners(manager);
-    hm.gameOver = false;
-    hm.resetCursor();
+    $("body").removeClass("clickable");
+    if (hm.gameOver) {
+      hm.addListeners(manager);
+      hm.gameOver = false;
+      hm.resetCursor();
+    }
   });
   setTimeout(function () {
     $(".game-message").toggleClass("fadeIn fadeOut");
     setTimeout(function () {
       $(".game-message").toggleClass("fadeOut animated");
       $(".game-message").addClass("hidden");
+      $("body").removeClass("clickable");
       if (hm.gameOver) {
         hm.addListeners(manager);
         hm.gameOver = false;
