@@ -177,6 +177,7 @@ HTMLManager.prototype.displayNextLevel = function (nextlevel, difference, manage
       $(".game-message").addClass("hidden");
       hm.addListeners(manager);
       this.gameOver = false;
+      this.resetCursor();
     }, 900)
   }, 1500);
 }
