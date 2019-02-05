@@ -187,7 +187,7 @@ HTMLManager.prototype.displayNextLevel = function (nextlevel, difference, manage
     setTimeout(function () {
       $(".game-message").toggleClass("fadeOut animated");
       $(".game-message").addClass("hidden");
-      if (!hm.gameOver) {
+      if (hm.gameOver) {
         hm.addListeners(manager);
         hm.gameOver = false;
         hm.resetCursor();
