@@ -40,7 +40,7 @@ GameManager.prototype.levelUp = function () {
 }
 
 GameManager.prototype.relative = function (x, n) {
-  return -Math.sqrt(x)+Math.sqrt(n)+1
+  return -Math.sqrt(x)+Math.sqrt(n)+1 //function for probability of next level on loss
 }
 
 GameManager.prototype.levelDown = function () {
@@ -54,4 +54,22 @@ GameManager.prototype.levelDown = function () {
   this.board = new Board(this.level);
   this.htmlManager.setBoard(this);
   this.htmlManager.displayNextLevel(this.level, difference, this);
+}
+
+GameManager.prototype.nextLevel = function (win) {
+  var oldlevel = this.level;
+  if (win) {
+    this.totalCoins = Math.min(this.totalCoins+this.currentCoins, 99999);
+    this.htmlManager.setTotalCoins(this.totalCoins);
+    this.level = Math.min(this.level+1, 7);
+  } else {
+    this.level = chance.weighted(
+      Array.from({ length: this.level }, (_, i) => i+1), 
+      Array.from({ length: this.level }, (_, i) => this.relative(i+1, this.level))
+    );
+  }
+  this.currentCoins = 0;
+  this.board = new Board(this.level);
+  this.htmlManager.setBoard(this);
+  this.htmlManager.displayNextLevel(this.level, this.level-oldlevel, this);
 }

@@ -97,7 +97,7 @@ HTMLManager.prototype.setTotalCoins = function (coins) {
 HTMLManager.prototype.displayCursor = function () {
   $(".tile").removeClass("cursor");
   if (pos = this.cursorPos) {
-    if (pos.col != 5) {
+    if (pos.col < 5) {
       this.boardContainer.children[pos.row].children[pos.col].classList.add("cursor");
     } else {
       //set cursor on memo button
@@ -159,7 +159,7 @@ HTMLManager.prototype.gameOverMessage = function (coins, win, manager) {
       setTimeout(function () {
         $(document).one("click", function () {
           $(".tile").removeClass("is-flipped");
-          win ? manager.levelUp() : manager.levelDown();
+          manager.nextLevel(win);
         });
       }, 100);
     });
