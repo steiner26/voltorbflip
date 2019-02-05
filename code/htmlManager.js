@@ -132,7 +132,7 @@ HTMLManager.prototype.updateCursor = function (dir) {
 }
 
 HTMLManager.prototype.setCursor = function (pos) {
-  this.cursorPos = pos;
+  this.cursorPos = {row:pos.row, col:pos.col};
   this.displayCursor()
 }
 
