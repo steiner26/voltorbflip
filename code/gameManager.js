@@ -12,14 +12,12 @@ GameManager.prototype.flip = function (pos) {
   result = this.board.flip(pos)
   if (result == 0) {
     this.currentCoins = 0;
-    this.htmlManager.clearCursor();
     this.htmlManager.setCurrentCoins(this.currentCoins);
     this.htmlManager.gameOverMessage(this.currentCoins, false, this);
   } else if (result != null) {
     this.currentCoins = (this.currentCoins ? this.currentCoins * result : result);
     this.htmlManager.setCurrentCoins(this.currentCoins);
     if (this.currentCoins == this.board.totalCoins) {
-      this.htmlManager.clearCursor();
       this.htmlManager.gameOverMessage(this.currentCoins, true, this);
     }
   }

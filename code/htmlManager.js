@@ -95,6 +95,7 @@ HTMLManager.prototype.setTotalCoins = function (coins) {
 }
 
 HTMLManager.prototype.displayCursor = function () {
+  console.log(this.cursorPos);
   $(".tile").removeClass("cursor");
   if (pos = this.cursorPos) {
     if (pos.col != 5) {
@@ -142,6 +143,7 @@ HTMLManager.prototype.resetCursor = function () {
 
 HTMLManager.prototype.gameOverMessage = function (coins, win, manager) {
   this.gameOver = true;
+  this.clearCursor();
   if (coins) {
     this.messageContainer.innerHTML = "Game clear! You received " + coins.toString() + " Coin(s)!";
   } else {
