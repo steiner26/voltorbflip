@@ -25,11 +25,11 @@ HTMLManager.prototype.setBoard = function (manager) {
   });
 
   for (i = 0; i < 5; i++) {
-    Rinfo = this.rowsInfoContainer.children[i];
+    var Rinfo = this.rowsInfoContainer.children[i];
     Rinfo.children[0].innerHTML = this.extend(manager.board.rowsInfo[i].points, 2);
     Rinfo.children[1].innerHTML = manager.board.rowsInfo[i].bombs.toString();
 
-    Cinfo = this.colsInfoContainer.children[i];
+    var Cinfo = this.colsInfoContainer.children[i];
     Cinfo.children[0].innerHTML = this.extend(manager.board.colsInfo[i].points, 2);
     Cinfo.children[1].innerHTML = manager.board.colsInfo[i].bombs.toString();
   }
@@ -51,14 +51,14 @@ HTMLManager.prototype.extend = function (n, places) {
   if (n == 0) {
     return "0".repeat(places);
   }
-  num0 = Math.ceil(Math.log10(Math.pow(10, places-1)/n));
+  var num0 = Math.ceil(Math.log10(Math.pow(10, places-1)/n));
   return (num0 >= 0 ? "0".repeat(num0) + n.toString() : n.toString());
 }
 
 HTMLManager.prototype.setCurrentCoins = function (coins) {
   current = parseInt(document.querySelector("#current-coins").innerHTML);
   if (coins > current) {
-    hm = this;
+    var hm = this;
     for (i = current+1; i<=coins; i++) {
       setTimeout(function (x) {
       document.querySelector("#current-coins").innerHTML = hm.extend(x, 5);
@@ -72,7 +72,7 @@ HTMLManager.prototype.setCurrentCoins = function (coins) {
 HTMLManager.prototype.setTotalCoins = function (coins) {
   current = parseInt(document.querySelector("#total-coins").innerHTML);
   if (coins > current) {
-    hm = this;
+    var hm = this;
     for (i = current+1; i<=coins; i++) {
       setTimeout(function (x) {
       document.querySelector("#total-coins").innerHTML = hm.extend(x, 5);
@@ -80,6 +80,13 @@ HTMLManager.prototype.setTotalCoins = function (coins) {
     }
   } else {
     document.querySelector("#total-coins").innerHTML = this.extend(coins, 5);
+  }
+}
+
+HTMLManager.prototype.setCursor = function (manager) {
+  $(".tile").removeClass("cursor");
+  if (pos = manager.cursorPos) {
+    this.boardContainer.children[pos.row].children[pos.col].classList.add("cursor");
   }
 }
 
@@ -115,7 +122,7 @@ HTMLManager.prototype.displayNextLevel = function (nextlevel, difference, manage
     this.messageContainer.innerHTML = "Ready to play Game Lv. " + nextlevel.toString() + "!";
   }
   $(".game-message").toggleClass("fadeIn animated hidden");
-  hm = this;
+  var hm = this;
   $("body").one("click", function () {
     $(".game-message").addClass("hidden");
     hm.addListeners(manager);

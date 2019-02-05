@@ -7,7 +7,7 @@ function Board (rank) {
   ));
 
   //read 2/3/bomb data from levels and set up board
-  data = levels[rank][chance.natural({ min: 0, max: 4 })];
+  var data = levels[rank][chance.natural({ min: 0, max: 4 })];
   this.totalCoins = Math.pow(2, data[0]) * Math.pow(3, data[1]);
   this.setup(data);
 }
@@ -15,7 +15,7 @@ function Board (rank) {
 Board.prototype.setup = function (data) {
   //pick random spots for each 2/3/bomb on this board
   var spots = chance.unique(function () {
-    result = {};
+    var result = {};
     result.x = (chance.natural({ min: 0, max: 4 }));
     result.y = (chance.natural({ min: 0, max: 4 }));
     return result;
@@ -39,9 +39,9 @@ Board.prototype.setup = function (data) {
   //calculate the info for the rows and columns
   var rsums = [];
   for (r = 0; r < 5; r++) {
-    p = 0; b = 0;
+    var p = 0; var b = 0;
     for (c = 0; c < 5; c++) {
-      tile = this.tiles[r][c];
+      var tile = this.tiles[r][c];
       (v = tile.value) ? p += v : b += 1;
     }
     rsums.push(new Info(p, b));
@@ -50,9 +50,9 @@ Board.prototype.setup = function (data) {
 
   var csums = [];
   for (c = 0; c < 5; c++) {
-    p = 0; b = 0;
+    var p = 0; var b = 0;
     for (r = 0; r < 5; r++) {
-      tile = this.tiles[r][c];
+      var tile = this.tiles[r][c];
       (v = tile.value) ? p += v : b += 1;
     }
     csums.push(new Info(p, b));

@@ -35,6 +35,34 @@ body {
   transform-style: preserve-3d;
 }
 
+.tile:before {
+  background: none;
+  border: 4px solid #D1E8E0;
+  border-radius: 4px;
+  z-index: -1;
+  content: "";
+  display: block;
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  pointer-events: none;
+}
+
+.tile.cursor {
+  border: 4px solid red;
+  margin: 6px;
+}
+
+.tile.cursor:before {
+  border: 2px solid black;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+}
+
 .tile.is-flipped {
   transform: rotateY(180deg);
 }
@@ -80,21 +108,6 @@ body {
 
 .tile_back_3:after {
   content: "3";
-}
-
-.tile:before {
-  background: none;
-  border: 4px solid #D1E8E0;
-  border-radius: 4px;
-  z-index: -1;
-  content: "";
-  display: block;
-  position: absolute;
-  top: -6px;
-  left: -6px;
-  right: -6px;
-  bottom: -6px;
-  pointer-events: none;
 }
 
 .clickable {
