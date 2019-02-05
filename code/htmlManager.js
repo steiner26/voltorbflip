@@ -176,8 +176,8 @@ HTMLManager.prototype.displayNextLevel = function (nextlevel, difference, manage
       $(".game-message").toggleClass("fadeOut animated");
       $(".game-message").addClass("hidden");
       hm.addListeners(manager);
-      this.gameOver = false;
-      this.resetCursor();
+      hm.gameOver = false;
+      hm.resetCursor();
     }, 900)
   }, 1500);
 }
