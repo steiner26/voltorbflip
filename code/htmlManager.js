@@ -90,6 +90,10 @@ HTMLManager.prototype.setCursor = function (manager) {
   }
 }
 
+HTMLManager.prototype.clearCursor = function () {
+  $(".tile").removeClass("cursor");
+}
+
 HTMLManager.prototype.gameOverMessage = function (coins, win, manager) {
   if (coins) {
     this.messageContainer.innerHTML = "Game clear! You received " + coins.toString() + " Coin(s)!";

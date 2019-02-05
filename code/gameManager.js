@@ -22,6 +22,7 @@ GameManager.prototype.flip = function (pos) {
   if (result == 0) {
     this.currentCoins = 0;
     this.gameOver = true;
+    this.htmlManager.clearCursor();
     this.htmlManager.setCurrentCoins(this.currentCoins);
     this.htmlManager.gameOverMessage(this.currentCoins, false, this);
   } else if (result != null) {
@@ -29,6 +30,7 @@ GameManager.prototype.flip = function (pos) {
     this.htmlManager.setCurrentCoins(this.currentCoins);
     if (this.currentCoins == this.board.totalCoins) {
       this.gameOver = true;
+      this.htmlManager.clearCursor();
       this.htmlManager.gameOverMessage(this.currentCoins, true, this);
     }
   }
@@ -40,12 +42,12 @@ GameManager.prototype.getTile = function (pos) {
 }
 
 GameManager.prototype.updateCursor = function (dir) {
-  if (this.cursorPos) {
+  if (this.cursorPos && !this.gameOver) {
     switch (dir) {
       case 0: //up
       case 2: //down
         if (this.cursorPos.col != 5) {
-          this.cursorPos.row = (this.cursorPos.row + (-dir+1))%5;
+          this.cursorPos.row = (this.cursorPos.row + (dir-1))%5;
         }
         break;
       case 1: //right
