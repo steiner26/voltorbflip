@@ -121,10 +121,12 @@ HTMLManager.prototype.updateCursor = function (dir) {
         this.cursorPos.col = (this.cursorPos.col + (-dir+2) + 6)%6;
         break;
     }
+    this.setCursor();
   } else if (!this.gameOver) {
     this.cursorPos = {row:0, col:0};
+    this.setCursor();
   }
-  this.setCursor();
+  
 }
 
 HTMLManager.prototype.resetCursor = function () {
