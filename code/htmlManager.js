@@ -6,6 +6,15 @@ function HTMLManager () {
   this.rowsInfoContainer = document.querySelector(".info_rows");
   this.colsInfoContainer = document.querySelector(".info_cols");
 
+  this.gameOver = false;
+
+  if (("ontouchstart" in window) || window.navigator.msMaxTouchPoints > 0) { //supports touch
+    this.cursorPos = null;
+  } else {
+    this.resetCursor();
+  }
+  new InputManager().listen(this);
+
   for  (r = 0; r < 5; r++) {
     for (c = 0; c < 5; c++) {
       var tile = this.boardContainer.children[r].children[c];
@@ -83,9 +92,9 @@ HTMLManager.prototype.setTotalCoins = function (coins) {
   }
 }
 
-HTMLManager.prototype.setCursor = function (manager) {
+HTMLManager.prototype.setCursor = function () {
   $(".tile").removeClass("cursor");
-  if (pos = manager.cursorPos) {
+  if (pos = this.cursorPos) {
     if (pos.col != 5) {
       this.boardContainer.children[pos.row].children[pos.col].classList.add("cursor");
     } else {
@@ -98,7 +107,33 @@ HTMLManager.prototype.clearCursor = function () {
   $(".tile").removeClass("cursor");
 }
 
+HTMLManager.prototype.updateCursor = function (dir) {
+  if (this.cursorPos && !this.gameOver) {
+    switch (dir) {
+      case 0: //up
+      case 2: //down
+        if (this.cursorPos.col != 5) {
+          this.cursorPos.row = (this.cursorPos.row + (dir-1) + 5)%5;
+        }
+        break;
+      case 1: //right
+      case 3: //left
+        this.cursorPos.col = (this.cursorPos.col + (-dir+2) + 6)%6;
+        break;
+    }
+  } else if (!this.gameOver) {
+    this.cursorPos = {row:0, col:0};
+  }
+  this.setCursor();
+}
+
+HTMLManager.prototype.resetCursor = function () {
+  this.cursorPos = {row:0, col:0};
+  this.setCursor();
+}
+
 HTMLManager.prototype.gameOverMessage = function (coins, win, manager) {
+  this.gameOver = true;
   if (coins) {
     this.messageContainer.innerHTML = "Game clear! You received " + coins.toString() + " Coin(s)!";
   } else {
@@ -141,6 +176,7 @@ HTMLManager.prototype.displayNextLevel = function (nextlevel, difference, manage
       $(".game-message").toggleClass("fadeOut animated");
       $(".game-message").addClass("hidden");
       hm.addListeners(manager);
+      this.gameOver = false;
     }, 900)
   }, 1500);
 }

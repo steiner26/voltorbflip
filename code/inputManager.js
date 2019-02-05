@@ -1,6 +1,4 @@
-function InputManager () {
-
-}
+function InputManager () {}
 
 InputManager.prototype.listen = function (manager) {
 

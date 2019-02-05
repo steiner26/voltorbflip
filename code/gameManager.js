@@ -1,27 +1,17 @@
-function GameManager (HTMLManager) {
+function GameManager () {
   this.htmlManager = new HTMLManager;
-  this.inputManager = new InputManager;
   this.level = 1
   this.board = new Board(this.level);
   this.htmlManager.setBoard(this);
   this.htmlManager.addListeners(this);
   this.totalCoins = 0;
   this.currentCoins = 0;
-  this.gameOver = false;
-
-  if (("ontouchstart" in window) || window.navigator.msMaxTouchPoints > 0) { //supports touch
-    this.cursorPos = null;
-  } else {
-    this.resetCursor();
-  }
-  this.inputManager.listen(this);
 }
 
 GameManager.prototype.flip = function (pos) {
   result = this.board.flip(pos)
   if (result == 0) {
     this.currentCoins = 0;
-    this.gameOver = true;
     this.htmlManager.clearCursor();
     this.htmlManager.setCurrentCoins(this.currentCoins);
     this.htmlManager.gameOverMessage(this.currentCoins, false, this);
@@ -29,7 +19,6 @@ GameManager.prototype.flip = function (pos) {
     this.currentCoins = (this.currentCoins ? this.currentCoins * result : result);
     this.htmlManager.setCurrentCoins(this.currentCoins);
     if (this.currentCoins == this.board.totalCoins) {
-      this.gameOver = true;
       this.htmlManager.clearCursor();
       this.htmlManager.gameOverMessage(this.currentCoins, true, this);
     }
@@ -41,31 +30,6 @@ GameManager.prototype.getTile = function (pos) {
   return this.board.tiles[pos.row][pos.col].value
 }
 
-GameManager.prototype.updateCursor = function (dir) {
-  if (this.cursorPos && !this.gameOver) {
-    switch (dir) {
-      case 0: //up
-      case 2: //down
-        if (this.cursorPos.col != 5) {
-          this.cursorPos.row = (this.cursorPos.row + (dir-1) + 5)%5;
-        }
-        break;
-      case 1: //right
-      case 3: //left
-        this.cursorPos.col = (this.cursorPos.col + (-dir+2) + 6)%6;
-        break;
-    }
-  } else if (!this.gameOver) {
-    this.cursorPos = {row:0, col:0};
-  }
-  this.htmlManager.setCursor(this);
-}
-
-GameManager.prototype.resetCursor = function () {
-  this.cursorPos = {row:0, col:0};
-  this.htmlManager.setCursor(this);
-}
-
 GameManager.prototype.levelUp = function () {
   this.totalCoins = Math.min(this.totalCoins+this.currentCoins, 99999);
   this.htmlManager.setTotalCoins(this.totalCoins);
@@ -73,8 +37,7 @@ GameManager.prototype.levelUp = function () {
   var oldlevel = this.level;
   this.level = Math.min(this.level+1, 7);
   this.board = new Board(this.level);
-  this.gameOver = false;
-  this.resetCursor();
+  this.htmlManager.resetCursor();
   this.htmlManager.setBoard(this);
   this.htmlManager.displayNextLevel(this.level, this.level-oldlevel, this);
 }
@@ -92,8 +55,7 @@ GameManager.prototype.levelDown = function () {
   var difference = nextlevel - this.level;
   this.level = nextlevel;
   this.board = new Board(this.level);
-  this.gameOver = false;
-  this.resetCursor();
+  this.htmlManager.resetCursor();
   this.htmlManager.setBoard(this);
   this.htmlManager.displayNextLevel(this.level, difference, this);
 }
