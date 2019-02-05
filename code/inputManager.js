@@ -25,7 +25,11 @@ InputManager.prototype.listen = function (manager) {
         event.preventDefault();
         manager.updateCursor(dir);
       } else if (event.which == 13) {
-        $(".cursor").trigger("click");
+        if (manager.gameOver) {
+          $(".cursor").trigger("click");
+        } else {
+          $(document).trigger("click");
+        }
       }
     }
   });
