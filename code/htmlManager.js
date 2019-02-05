@@ -179,6 +179,8 @@ HTMLManager.prototype.displayNextLevel = function (nextlevel, difference, manage
   $(document).one("click", function () {
     $(".game-message").addClass("hidden");
     hm.addListeners(manager);
+    hm.gameOver = false;
+    hm.resetCursor();
   });
   setTimeout(function () {
     $(".game-message").toggleClass("fadeIn fadeOut");
