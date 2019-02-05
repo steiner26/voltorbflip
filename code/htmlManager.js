@@ -86,8 +86,12 @@ HTMLManager.prototype.setTotalCoins = function (coins) {
 HTMLManager.prototype.setCursor = function (manager) {
   $(".tile").removeClass("cursor");
   if (pos = manager.cursorPos) {
-    this.boardContainer.children[pos.row].children[pos.col].classList.add("cursor");
-  }
+    if (pos.col != 5) {
+      this.boardContainer.children[pos.row].children[pos.col].classList.add("cursor");
+    } else {
+      //set cursor on memo button
+    }
+  } 
 }
 
 HTMLManager.prototype.clearCursor = function () {
