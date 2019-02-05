@@ -26,9 +26,9 @@ InputManager.prototype.listen = function (manager) {
         manager.updateCursor(dir);
       } else if (event.which == 13) {
         if (manager.gameOver) {
-          $(".cursor").trigger("click");
-        } else {
           $(document).trigger("click");
+        } else {
+          $(".cursor").trigger("click");
         }
       }
     }
