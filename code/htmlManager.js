@@ -86,7 +86,6 @@ HTMLManager.prototype.setTotalCoins = function (coins) {
 HTMLManager.prototype.setCursor = function (manager) {
   $(".tile").removeClass("cursor");
   if (pos = manager.cursorPos) {
-    console.log(pos);
     if (pos.col != 5) {
       this.boardContainer.children[pos.row].children[pos.col].classList.add("cursor");
     } else {

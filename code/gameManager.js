@@ -47,12 +47,12 @@ GameManager.prototype.updateCursor = function (dir) {
       case 0: //up
       case 2: //down
         if (this.cursorPos.col != 5) {
-          this.cursorPos.row = (this.cursorPos.row + (dir-1))%5;
+          this.cursorPos.row = (this.cursorPos.row + (dir-1) + 5)%5;
         }
         break;
       case 1: //right
       case 3: //left
-        this.cursorPos.col = (this.cursorPos.col + (-dir+2))%6;
+        this.cursorPos.col = (this.cursorPos.col + (-dir+2) + 6)%6;
         break;
     }
   } else if (!this.gameOver) {
