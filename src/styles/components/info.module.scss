@@ -1,0 +1,77 @@
+@import "../variables.scss";
+
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 4px solid $border-color;
+  border-radius: 4px;
+  padding-top: calc(100% - 8px);
+
+  font-family: Nunito Sans, sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+
+  @media (min-width: 375px) {
+    font-size: 24px;
+  }
+
+  @media (min-width: $breakpoint-mobile) {
+    font-size: 32px;
+  }
+
+  @media (min-width: $breakpoint-tablet) {
+    font-size: 36px;
+  }
+
+  &.info0 {
+    background-color: $info-red;
+  }
+  &.info1 {
+    background-color: $info-green;
+  }
+  &.info2 {
+    background-color: $info-orange;
+  }
+  &.info3 {
+    background-color: $info-blue;
+  }
+  &.info4 {
+    background-color: $info-purple;
+  }
+}
+
+.content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.points {
+  flex: 1 2;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding-right: 5%;
+  // line-height: 0px;
+}
+
+.bombs {
+  flex: 1.5 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 5%;
+  border-top: 4px solid $border-color;
+
+  background-image: url(../../images/voltorb.png);
+  background-repeat: no-repeat;
+  background-position: 5% 50%;
+  background-size: auto 90%;
+}

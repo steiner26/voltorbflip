@@ -1,6 +1,16 @@
 import React from "react"
+import styles from "../styles/components/tile.module.scss"
+import classNames from "classnames/bind"
 
-/** Tile state model:
+import TileBack from "../images/blanktile.svg"
+import Memo0 from "../images/icons/memo-0.svg"
+import Memo1 from "../images/icons/memo-1.svg"
+import Memo2 from "../images/icons/memo-2.svg"
+import Memo3 from "../images/icons/memo-3.svg"
+
+const cx = classNames.bind(styles)
+
+/** Tile expected props:
  * -----------------------------------------------------------------------------
  * row: which row this tile is in [number]
  * col: which column this tile is in [number]
@@ -11,45 +21,26 @@ import React from "react"
 class Tile extends React.Component {
   constructor(props) {
     super(props)
-
-    this.state = {
-      flipped: props.flipped,
-    }
-
-    this.handleClick = this.handleClick.bind(this)
   }
 
   static defaultProps = {
     flipped: false,
   }
 
-  handleClick() {
-    var flipped = this.state.flipped
-    this.setState(
-      () => ({ flipped: true }),
-      () => this.props.onChange(this.props.row, this.props.col, flipped)
-    )
-  }
-
   render() {
+    const { row, col, value, flipped, onChange, memo, cursor } = this.props
     return (
-      <div onClick={this.handleClick}>
-        <div>
-          {/* Tile back w/ memo */}
-          <div>
-            {/* memo top row */}
-            <span>&#9679;</span>
-            <span>1</span>
-          </div>
-          <div>
-            {/* memo bottom row */}
-            <span>2</span>
-            <span>3</span>
-          </div>
+      <div className={styles.tile} onClick={() => onChange(row, col)}>
+        <div className={cx("front", { flipped, cursor, bomb: value === 0 })}>
+          {value || ""}
         </div>
-        <div>
-          {/* Tile front with number/voltorb */}
-          {this.props.value} {this.props.flipped ? "true" : "false"}
+        <div className={cx("back", { flipped, cursor })}>
+          {/* Tile back w/ memo */}
+          <Memo0 className={cx("memo0", { active: memo[0] })} />
+          <Memo1 className={cx("memo1", { active: memo[1] })} />
+          <Memo2 className={cx("memo2", { active: memo[2] })} />
+          <Memo3 className={cx("memo3", { active: memo[3] })} />
+          {/* <TileBack className={styles.tileBack} /> */}
         </div>
       </div>
     )

@@ -1,57 +1,71 @@
 import React from "react"
+import styles from "../styles/components/game-container.module.scss"
 
 import BoardContainer from "./boardContainer"
-import createBoard from "../data/levels"
+import { createBoard, createGrid, states } from "../variables"
 
 class GameContainer extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      level: 1,
+      totalCoins: 0,
+      currentCoins: 0,
+      maxCoins: 1,
+      board: createGrid(() => ({})),
+      memo: this.createMemo(),
+      status: states.LOADING,
+      cursor: { row: 0, col: 0 },
+    }
+  }
 
+  componentDidMount() {
     const gameState = JSON.parse(window.localStorage.getItem("gameState"))
     if (gameState) {
-      this.state = {
+      this.setState(() => ({
         ...gameState,
-        inMemo: false,
-        cursorPos: { row: 0, col: 0 },
-      }
+        cursor: { row: 0, col: 0 },
+      }))
     } else {
       const { board, maxCoins } = createBoard(1)
-      this.state = {
-        level: 1,
-        totalCoins: 0,
-        currentCoins: 0,
-        maxCoins: maxCoins,
-        board: board,
-        memo: this.createMemo(),
-        inMemo: false,
-        cursorPos: { row: 0, col: 0 },
-      }
+      this.setState(() => ({ board, maxCoins, status: states.GAME }))
     }
+    window.addEventListener("keydown", this.setCursor)
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.currentCoins !== this.state.currentCoins) {
-      this.updateStorage()
+      // this.updateStorage()
     }
-    if (this.state.currentCoins === this.state.maxCoins) {
-      console.log("new level!")
+    if (
+      this.state.status === states.GAME &&
+      this.state.currentCoins === this.state.maxCoins
+    ) {
+      this.setState(() => ({ status: states.GAMEWON }))
+    }
+    if (
+      this.state.status === states.GAMEWON &&
+      prevState.status !== states.GAMEWON
+    ) {
+      console.log("won!")
+    }
+    if (
+      this.state.status === states.GAMELOST &&
+      prevState.status !== states.GAMELOST
+    ) {
+      console.log("lost!")
     }
   }
 
-  createMemo = () => {
-    return Array(5)
-      .fill()
-      .map((_, __) =>
-        Array(5)
-          .fill()
-          .map((_, __) => ({
-            0: false,
-            1: false,
-            2: false,
-            3: false,
-          }))
-      )
-  }
+  setCursor = e => {}
+
+  createMemo = () =>
+    createGrid(() => ({
+      0: true,
+      1: true,
+      2: true,
+      3: true,
+    }))
 
   updateStorage = () => {
     //make sure to keep track of flips!!!!
@@ -59,29 +73,22 @@ class GameContainer extends React.Component {
   }
 
   handleClick = (row, col) => {
-    const tile = this.state.board[row][col]
-    if (!tile.flipped && !this.state.inMemo) {
-      tile.flipped = true
-      const value = tile.value
-      if (value) {
-        this.setState(prevState => {
-          const newCoins =
-            prevState.currentCoins > 0 ? prevState.currentCoins * value : value
-          return {
-            currentCoins: newCoins,
-          }
-        })
-      } else {
-        this.setState(
-          () => ({ currentCoins: 0 }),
-          () => {
-            /* Add callback for loss */
-          }
-        )
-        console.log("boom")
+    this.setState(prevState => {
+      const newState = {}
+      newState.cursor = { row, col }
+      const tile = this.state.board[row][col]
+      if (!tile.flipped && this.state.status === states.GAME) {
+        tile.flipped = true
+        const value = tile.value
+        if (value) {
+          newState.currentCoins = (prevState.currentCoins || 1) * value
+        } else {
+          newState.currentCoins = 0
+          newState.status = states.GAMELOST
+        }
       }
-    }
-    this.setState(() => ({ cursor: { row: row, col: col } }))
+      return newState
+    })
   }
 
   render() {
@@ -93,11 +100,18 @@ class GameContainer extends React.Component {
           <div>Total Coins: {this.state.totalCoins}</div>
           <div>Coins collected this Level: {this.state.currentCoins}</div>
         </div>
-        <BoardContainer
-          board={this.state.board}
-          memo={this.state.memo}
-          onChange={this.handleClick}
-        />
+        <div>
+          <div onClick={() => window.localStorage.clear()}>Reset</div>
+        </div>
+        <div className={styles.boardContainer}>
+          <BoardContainer
+            board={this.state.board}
+            memo={this.state.memo}
+            status={this.state.status}
+            cursor={this.state.cursor}
+            onChange={this.handleClick}
+          />
+        </div>
       </div>
     )
   }

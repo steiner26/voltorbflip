@@ -17,15 +17,8 @@ const levels = {
   "7": [[9, 1, 13], [7, 2, 10], [6, 3, 10], [4, 4, 10], [1, 6, 13]],
 }
 
-export default function createBoard(level) {
-  var board = Array.from({ length: 5 }, (_, rowIndex) =>
-    Array.from({ length: 5 }, (_, colIndex) => ({
-      row: rowIndex,
-      col: colIndex,
-      value: 1,
-    }))
-  )
-
+export function createBoard(level) {
+  var board = createGrid((row, col) => ({ row, col, value: 1, flipped: false }))
   var data = levels[level][chance.natural({ min: 0, max: 4 })]
   var spots = chance.unique(
     function() {
@@ -58,4 +51,20 @@ export default function createBoard(level) {
   var maxCoins = Math.pow(2, data[0]) * Math.pow(3, data[1])
 
   return { board, maxCoins }
+}
+
+export const states = {
+  LOADING: 0,
+  GAME: 1,
+  GAMEWON: 2,
+  GAMELOST: 3,
+  FLIPWON: 4,
+  FLIPLOST: 5,
+  MEMO: 6,
+}
+
+export function createGrid(fn) {
+  return Array.from({ length: 5 }, (_, row) =>
+    Array.from({ length: 5 }, (_, col) => fn(row, col))
+  )
 }

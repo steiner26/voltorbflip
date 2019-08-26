@@ -1,0 +1,149 @@
+@import "../variables.scss";
+
+.tile {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  padding-top: calc(100% - 8px);
+  margin: 4px;
+}
+
+%tileFace {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  border: 2px solid black;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  transition: all 0.3s ease, border 0s 100ms;
+  cursor: pointer;
+
+  &:before {
+    background: none;
+    border: 4px solid $border-color;
+    transition: border 0s 100ms;
+    border-radius: 4px;
+    z-index: -1;
+    content: "";
+    display: block;
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    pointer-events: none;
+  }
+
+  &.cursor {
+    &:before {
+      border-color: red;
+    }
+  }
+}
+
+.front {
+  @extend %tileFace;
+  transform: rotateY(-180deg);
+
+  &.flipped {
+    transform: rotateY(0deg);
+  }
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $tile-color;
+  font-family: Nunito Sans, sans-serif;
+  font-weight: 700;
+  font-size: 35px;
+  z-index: 2;
+
+  -webkit-text-stroke: 1px white;
+
+  &.bomb {
+    background-image: url(../../images/voltorb.png);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 50% 50%;
+  }
+
+  @media (min-width: $breakpoint-mobile) {
+    font-size: 42px;
+  }
+
+  @media (min-width: $breakpoint-tablet) {
+    font-size: 50px;
+  }
+}
+
+.back {
+  @extend %tileFace;
+  transform: rotateY(0deg);
+
+  &.flipped {
+    transform: rotateY(180deg);
+  }
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 4px 12px;
+  color: $yellow;
+
+  background-image: url(../../images/blanktile.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+%memo {
+  position: absolute;
+  width: 15%;
+  height: 15%;
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}
+
+.memo0 {
+  @extend %memo;
+  top: 10%;
+  left: 10%;
+}
+
+.memo1 {
+  @extend %memo;
+  top: 10%;
+  right: 10%;
+}
+
+.memo2 {
+  @extend %memo;
+  bottom: 10%;
+  left: 10%;
+}
+
+.memo3 {
+  @extend %memo;
+  bottom: 10%;
+  right: 10%;
+}
+
+.tileBack {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.memoRow {
+  display: flex;
+  justify-content: space-between;
+}

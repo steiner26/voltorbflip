@@ -5,6 +5,7 @@
   "version": "1.0.0",
   "author": "WBCG <studio@westonbaker.com>",
   "dependencies": {
+    "chance": "^1.0.18",
     "classnames": "^2.2.6",
     "gatsby": "^2.13.59",
     "gatsby-image": "^2.2.8",

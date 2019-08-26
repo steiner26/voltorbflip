@@ -28,17 +28,22 @@ module.exports = {
       },
     },
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-react-svg`,
+    // `gatsby-plugin-react-svg`,
+    {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /icons/,
+        },
+      },
+    },
     `gatsby-image`,
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-web-font-loader`,
       options: {
-        typekit: {
-          id: ``,
-        },
         google: {
-          families: [""],
+          families: ["Nunito Sans:700,800"],
         },
       },
     },

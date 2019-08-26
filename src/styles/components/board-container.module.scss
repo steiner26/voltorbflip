@@ -1,0 +1,13 @@
+@import "../variables.scss";
+
+.boardContainer {
+  display: grid;
+  grid-template: auto auto auto auto auto auto / auto auto auto auto auto auto;
+  grid-column-gap: 4px;
+  grid-row-gap: 4px;
+  width: 100%;
+}
+
+.boardRow {
+  display: flex;
+}
