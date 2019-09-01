@@ -1,0 +1,225 @@
+@import "../variables.scss";
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 10px;
+
+  @media (min-width: $breakpoint-tablet) {
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 120px;
+    height: 100%;
+    margin-left: 5px;
+  }
+}
+
+.memoToggle {
+  width: 45%;
+  max-width: 120px;
+  border: 3px solid $border-black;
+  border-radius: 3px;
+  background-color: $background-green;
+  cursor: pointer;
+  user-select: none;
+
+  @media (min-width: $breakpoint-tablet) {
+    width: 100%;
+    border-width: 4px;
+    border-radius: 4px;
+  }
+
+  &.cursor {
+    border-color: $border-red;
+    &.memo {
+      border-color: $border-yellow;
+    }
+  }
+
+  position: relative;
+  overflow: hidden;
+  &:after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: #fcfcfc;
+    display: block;
+    position: absolute;
+    padding-top: 100%;
+    margin-top: -100%;
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  &:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 0.5;
+    transition: 0s;
+  }
+}
+
+.toggleContent {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 20px 2px 5px 2px;
+  background-image: linear-gradient(
+    to bottom,
+    #ffffff 40%,
+    #cecece 50%,
+    rgb(173, 173, 173) 60%
+  );
+  border-radius: 3px;
+
+  @media (min-width: $breakpoint-tablet) {
+    border-radius: 4px;
+  }
+}
+
+.toggleX {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  border-radius: 50%;
+  border: 1px solid white;
+  background-color: $border-black;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    height: 75%;
+  }
+
+  @media (min-width: $breakpoint-tablet) {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+.toggleText {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  text-align: center;
+  display: flex;
+
+  > div:first-child:after {
+    content: " ";
+    white-space: pre;
+  }
+
+  @media (min-width: $breakpoint-tablet) {
+    margin-top: 15px;
+    flex-direction: column;
+
+    > div:first-child:after {
+      content: "";
+    }
+  }
+}
+
+.memoSettings {
+  position: relative;
+  width: 0px;
+  max-width: 175px;
+  height: 50px;
+  overflow: hidden;
+  transition: width 0.5s ease, margin 0.4s ease;
+
+  &.active {
+    width: 50%;
+    margin-left: 5px;
+  }
+
+  @media (min-width: $breakpoint-tablet) {
+    height: 120px;
+    align-self: flex-end;
+    margin-top: 10px;
+
+    &.active {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+}
+
+.settingsContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+
+  border: 3px solid $border-black;
+  border-radius: 3px;
+  background-color: $memo-dark;
+
+  display: grid;
+  grid-template: auto / auto auto auto auto;
+  grid-column-gap: 3px;
+  grid-row-gap: 3px;
+  padding: 3px;
+
+  @media (min-width: $breakpoint-tablet) {
+    width: 120px;
+    height: 120px;
+    border-width: 4px;
+    border-radius: 4px;
+    grid-template: auto auto / auto auto;
+  }
+}
+
+.settingsButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 38px;
+  background-color: $memo-gray;
+  border-radius: 2px;
+  cursor: pointer;
+
+  &.active {
+    background-color: $dark-green;
+
+    svg path:last-child {
+      fill: $yellow;
+    }
+  }
+
+  &.cursor {
+    background-color: $memo-light;
+    cursor: default;
+
+    svg {
+      path:first-child {
+        fill: $memo-light;
+      }
+      path:last-child {
+        fill: $memo-dark;
+      }
+    }
+  }
+
+  @media (min-width: $breakpoint-tablet) {
+    width: auto;
+  }
+
+  svg {
+    max-width: 50%;
+    max-height: 50%;
+
+    &.memoVoltorb {
+      max-width: 75%;
+      max-height: 75%;
+    }
+
+    path:last-child {
+      fill: $memo-text;
+    }
+  }
+}

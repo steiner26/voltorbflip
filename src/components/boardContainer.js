@@ -55,6 +55,7 @@ class BoardContainer extends React.Component {
                 memo={this.props.memo[row][col]}
                 onChange={this.handleClick}
                 cursor={cursor.row === row && cursor.col === col}
+                inMemo={this.props.status === states.MEMO}
                 {...tile} //spread the row, col, value and flipped as props
               />
             )

@@ -7,6 +7,7 @@
   "dependencies": {
     "chance": "^1.0.18",
     "classnames": "^2.2.6",
+    "countup.js": "^2.0.4",
     "gatsby": "^2.13.59",
     "gatsby-image": "^2.2.8",
     "gatsby-plugin-manifest": "^2.2.5",

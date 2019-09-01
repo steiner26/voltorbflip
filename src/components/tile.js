@@ -28,14 +28,29 @@ class Tile extends React.Component {
   }
 
   render() {
-    const { row, col, value, flipped, onChange, memo, cursor } = this.props
+    const {
+      row,
+      col,
+      value,
+      flipped,
+      onChange,
+      memo,
+      cursor,
+      inMemo,
+    } = this.props
     return (
       <div className={styles.tile} onClick={() => onChange(row, col)}>
-        <div className={cx("front", { flipped, cursor, bomb: value === 0 })}>
+        <div
+          className={cx("front", {
+            flipped,
+            cursor,
+            inMemo,
+            bomb: value === 0,
+          })}
+        >
           {value || ""}
         </div>
-        <div className={cx("back", { flipped, cursor })}>
-          {/* Tile back w/ memo */}
+        <div className={cx("back", { flipped, cursor, inMemo })}>
           <Memo0 className={cx("memo0", { active: memo[0] })} />
           <Memo1 className={cx("memo1", { active: memo[1] })} />
           <Memo2 className={cx("memo2", { active: memo[2] })} />
