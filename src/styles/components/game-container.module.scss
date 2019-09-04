@@ -1,11 +1,54 @@
 @import "../variables.scss";
 
-.gameContainer {
+.gameContent {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 0px 5px;
+}
+
+.scoreContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0px;
+
+  @media (min-width: $breakpoint-tablet) {
+    flex-direction: row;
+    justify-content: center;
+    margin: 15px 0px;
+  }
+}
+
+.scoreItem {
+  width: 75%;
+  border: 2px solid $border-color;
+  border-radius: 4px;
+  padding: 5px;
+  background-color: white;
+  text-align: center;
+
+  &:not(:last-child) {
+    margin-bottom: 5px;
+  }
+
+  @media (min-width: $breakpoint-tablet) {
+    width: auto;
+
+    &:not(:last-child) {
+      margin-bottom: 0;
+      margin-right: 20px;
+    }
+  }
+}
+
+.gameContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   @media (min-width: $breakpoint-tablet) {
     flex-direction: row;
@@ -17,4 +60,63 @@
 .boardContainer {
   width: 100%;
   max-width: 550px;
+  position: relative;
+}
+
+.message {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  left: 41.6666%;
+  top: 41.6666%;
+  transform: translateY(-50%) translateX(-50%);
+
+  transition: opacity 0.5s linear, visibility 0.5s linear;
+  cursor: pointer;
+  z-index: 10;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 10px;
+  background-color: white;
+  border: 3px solid $border-color;
+  width: 40%;
+
+  &:before {
+    background: none;
+    border: 1px solid black;
+    border-radius: 3px;
+    z-index: -1;
+    content: "";
+    display: block;
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    pointer-events: none;
+  }
+
+  &.show {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  @media (min-width: $breakpoint-tablet) {
+    border-width: 4px;
+    padding: 50px 10px;
+    &:before {
+      border-width: 2px;
+      border-radius: 4px;
+      top: -6px;
+      left: -6px;
+      right: -6px;
+      bottom: -6px;
+    }
+  }
+}
+
+.messageText {
+  text-align: center;
 }

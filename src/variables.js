@@ -56,15 +56,28 @@ export function createBoard(level) {
 export const states = {
   LOADING: 0,
   GAME: 1,
-  GAMEWON: 2,
-  GAMELOST: 3,
-  FLIPWON: 4,
-  FLIPLOST: 5,
-  MEMO: 6,
+  MEMO: 2,
+  GAMEWON: 3,
+  GAMELOST: 4,
+  FLIPWON: 5,
+  FLIPLOST: 6,
+  NEWLEVEL: 7,
 }
 
 export function createGrid(fn) {
   return Array.from({ length: 5 }, (_, row) =>
     Array.from({ length: 5 }, (_, col) => fn(row, col))
+  )
+}
+
+function relative(x, n) {
+  //function for probability of next level on loss
+  return -Math.sqrt(x) + Math.sqrt(n) + 1
+}
+
+export function levelDown(level) {
+  return chance.weighted(
+    Array.from({ length: level }, (_, i) => i + 1),
+    Array.from({ length: level }, (_, i) => relative(i + 1, level))
   )
 }

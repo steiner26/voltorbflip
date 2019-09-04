@@ -32,7 +32,11 @@ class BoardContainer extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.status === states.GAME && prevProps.status !== states.GAME) {
+    if (
+      (this.props.status === states.NEWLEVEL &&
+        prevProps.status !== states.NEWLEVEL) ||
+      (this.props.status === states.GAME && prevProps.status === states.LOADING)
+    ) {
       this.setState(this.generateSums)
     }
   }
@@ -44,11 +48,10 @@ class BoardContainer extends React.Component {
   render() {
     var cursor = this.props.cursor
     return (
-      //I also need to include the column/row info.
-      //The board should be be mostly center with the other items placed relative to it
       <div className={styles.boardContainer}>
         {this.props.board.map((boardRow, row) => {
           var result = boardRow.map((tile, col) => {
+            const { flipped, ...other } = tile
             return (
               <Tile
                 key={col}
@@ -56,7 +59,12 @@ class BoardContainer extends React.Component {
                 onChange={this.handleClick}
                 cursor={cursor.row === row && cursor.col === col}
                 inMemo={this.props.status === states.MEMO}
-                {...tile} //spread the row, col, value and flipped as props
+                flipped={
+                  flipped ||
+                  this.props.status === states.FLIPLOST ||
+                  this.props.status === states.FLIPWON
+                }
+                {...other}
               />
             )
           })

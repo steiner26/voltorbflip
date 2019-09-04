@@ -4,12 +4,16 @@ import styles from "../styles/components/game-container.module.scss"
 import BoardContainer from "./boardContainer"
 import Memo from "./memo"
 import Counter from "./counter"
-import { createBoard, createGrid, states } from "../variables"
+import { createBoard, createGrid, levelDown, states } from "../variables"
+import classNames from "classnames/bind"
+
+var cx = classNames.bind(styles)
 
 class GameContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      prevLevel: 1,
       level: 1,
       totalCoins: 0,
       currentCoins: 0,
@@ -43,24 +47,27 @@ class GameContainer extends React.Component {
       this.state.status === states.GAME &&
       this.state.currentCoins === this.state.maxCoins
     ) {
-      this.setState(() => ({ status: states.GAMEWON }))
+      this.setState(() => ({
+        status: states.GAMEWON,
+        cursor: {},
+      }))
     }
     if (
-      this.state.status === states.GAMEWON &&
-      prevState.status !== states.GAMEWON
+      (this.state.status === states.GAMEWON &&
+        prevState.status !== states.GAMEWON) ||
+      (this.state.status === states.GAMELOST &&
+        prevState.status !== states.GAMELOST)
     ) {
-      console.log("won!")
+      setTimeout(() => window.addEventListener("click", this.newLevel), 1)
     }
-    if (
-      this.state.status === states.GAMELOST &&
-      prevState.status !== states.GAMELOST
-    ) {
-      console.log("lost!")
+    if (this.state.status === states.GAME && prevState.status > states.MEMO) {
+      this.setState(() => ({ cursor: { row: 0, col: 0 } }))
     }
   }
 
   componentWillUnmount() {
     window.removeEventListener("keydown", this.handleKeyDown)
+    window.removeEventListener("click", this.newLevel)
   }
 
   handleKeyDown = e => {
@@ -94,11 +101,15 @@ class GameContainer extends React.Component {
         break
       case " ":
       case "Enter":
-        e.preventDefault()
-        if (col !== 5) {
-          this.handleClick(row, col)
+        if (this.state.status > states.MEMO) {
+          this.newLevel()
         } else {
-          this.toggleMemo()
+          e.preventDefault()
+          if (col !== 5) {
+            this.handleClick(row, col)
+          } else {
+            this.toggleMemo()
+          }
         }
         break
       case "x":
@@ -127,14 +138,18 @@ class GameContainer extends React.Component {
     }))
 
   updateStorage = () => {
-    //make sure to keep track of flips!!!!
     window.localStorage.setItem("gameState", JSON.stringify(this.state))
   }
 
   handleClick = (row, col) => {
     this.setState(prevState => {
       const newState = {}
-      newState.cursor = { row, col }
+      if (
+        this.state.status === states.GAME ||
+        this.state.status === states.MEMO
+      ) {
+        newState.cursor = { row, col }
+      }
       const tile = this.state.board[row][col]
       if (!tile.flipped && this.state.status === states.GAME) {
         tile.flipped = true
@@ -144,6 +159,7 @@ class GameContainer extends React.Component {
         } else {
           newState.currentCoins = 0
           newState.status = states.GAMELOST
+          newState.cursor = {}
         }
       }
       return newState
@@ -171,23 +187,99 @@ class GameContainer extends React.Component {
     }
   }
 
+  newLevel = () => {
+    this.setState(prevState => {
+      var newState = {}
+      if (prevState.status === states.GAMEWON) {
+        newState.status = states.FLIPWON
+      } else if (prevState.status === states.GAMELOST) {
+        newState.status = states.FLIPLOST
+      } else if (prevState.status === states.FLIPWON) {
+        const level = Math.min(prevState.level + 1, 7)
+        newState.level = level
+        newState.prevLevel = prevState.level
+        newState.totalCoins = Math.min(
+          prevState.totalCoins + prevState.currentCoins,
+          99999
+        )
+        newState.currentCoins = 0
+        const { board, maxCoins } = createBoard(level)
+        newState.board = board
+        newState.maxCoins = maxCoins
+        newState.memo = this.createMemo()
+        newState.status = states.NEWLEVEL
+        this.timer = setTimeout(this.startGame, 2000)
+      } else if (prevState.status === states.FLIPLOST) {
+        const level = levelDown(prevState.level)
+        newState.level = level
+        newState.prevLevel = prevState.level
+        const { board, maxCoins } = createBoard(level)
+        newState.board = board
+        newState.maxCoins = maxCoins
+        newState.memo = this.createMemo()
+        newState.status = states.NEWLEVEL
+        this.timer = setTimeout(this.startGame, 2000)
+      } else if (prevState.status === states.NEWLEVEL) {
+        clearTimeout(this.timer)
+        newState.status = states.GAME
+        window.removeEventListener("click", this.newLevel)
+      }
+      return newState
+    })
+  }
+
+  startGame = () => {
+    clearTimeout(this.timer)
+    this.setState(() => ({ status: states.GAME }))
+    window.removeEventListener("click", this.newLevel)
+  }
+
+  messageText = () => {
+    if (
+      this.state.status === states.GAMEWON ||
+      this.state.status === states.FLIPWON
+    ) {
+      return `Game clear! You received ${this.state.currentCoins} Coins!`
+    }
+    if (
+      this.state.status === states.GAMELOST ||
+      this.state.status === states.FLIPLOST
+    ) {
+      return "Oh no! You get 0 Coins!"
+    }
+    if (
+      this.state.status === states.NEWLEVEL ||
+      this.state.status === states.GAME
+    ) {
+      if (this.state.level > this.state.prevLevel) {
+        return `Advanced to Game Lv. ${this.state.level}!`
+      }
+      if (this.state.level === this.state.prevLevel) {
+        return `Ready to play Game Lv. ${this.state.level}!`
+      }
+      if (this.state.level < this.state.prevLevel) {
+        return `Dropped to Game Lv. ${this.state.level}!`
+      }
+    }
+  }
+
   render() {
     const { row, col } = this.state.cursor
     var cursorMemo = {}
-    if (col !== 5 && !this.state.board[row][col].flipped) {
+    if (col < 5 && !this.state.board[row][col].flipped) {
       cursorMemo = this.state.memo[row][col]
     }
     return (
-      <div>
-        <div>
-          <div>
-            Level: <Counter id="level" value={this.state.level} />
+      <div className={styles.gameContent}>
+        <div className={styles.scoreContainer}>
+          <div className={styles.scoreItem}>
+            Level: <span id="level">{this.state.level}</span>
           </div>
-          <div>
+          <div className={styles.scoreItem}>
             Total Coins:{" "}
             <Counter id="totalcoins" value={this.state.totalCoins} />
           </div>
-          <div>
+          <div className={styles.scoreItem}>
             Coins collected this Level:{" "}
             <Counter id="currentcoins" value={this.state.currentCoins} />
           </div>
@@ -201,6 +293,16 @@ class GameContainer extends React.Component {
               cursor={this.state.cursor}
               onChange={this.handleClick}
             />
+            <div
+              className={cx("message", {
+                show:
+                  this.state.status === states.GAMEWON ||
+                  this.state.status === states.GAMELOST ||
+                  this.state.status === states.NEWLEVEL,
+              })}
+            >
+              <div className={styles.messageText}>{this.messageText()}</div>
+            </div>
           </div>
           <Memo
             toggleMemo={this.toggleMemo}

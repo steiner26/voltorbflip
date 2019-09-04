@@ -108,6 +108,8 @@
   margin-bottom: 5px;
   text-align: center;
   display: flex;
+  font-family: Nunito Sans, sans-serif;
+  font-size: 1.1em;
 
   > div:first-child:after {
     content: " ";
@@ -117,6 +119,10 @@
   @media (min-width: $breakpoint-tablet) {
     margin-top: 15px;
     flex-direction: column;
+    font-weight: 800;
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke: 1px black;
+    font-size: 1.25em;
 
     > div:first-child:after {
       content: "";
@@ -127,14 +133,13 @@
 .memoSettings {
   position: relative;
   width: 0px;
-  max-width: 175px;
+  max-width: 180px;
   height: 50px;
   overflow: hidden;
   transition: width 0.5s ease, margin 0.4s ease;
 
   &.active {
     width: 50%;
-    margin-left: 5px;
   }
 
   @media (min-width: $breakpoint-tablet) {
@@ -144,7 +149,6 @@
 
     &.active {
       width: 100%;
-      margin-left: 0;
     }
   }
 }
@@ -152,7 +156,7 @@
 .settingsContent {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 5px;
   height: 100%;
 
   border: 3px solid $border-black;
@@ -168,6 +172,7 @@
   @media (min-width: $breakpoint-tablet) {
     width: 120px;
     height: 120px;
+    left: 0;
     border-width: 4px;
     border-radius: 4px;
     grid-template: auto auto / auto auto;
