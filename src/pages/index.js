@@ -1,15 +1,17 @@
 import React from "react"
-import { Link } from "gatsby"
+import styles from "../styles/pages/index.module.scss"
 
-import Layout from "../components/layout"
+// import Layout from "../components/layout"
 import SEO from "../components/seo"
 import GameContainer from "../components/gameContainer"
+import About from "../components/about"
 
 const IndexPage = () => (
-  <Layout>
+  <div className={styles.container}>
     <SEO title="Home" />
     <GameContainer />
-  </Layout>
+    <About />
+  </div>
 )
 
 export default IndexPage

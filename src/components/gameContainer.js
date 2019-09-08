@@ -101,10 +101,10 @@ class GameContainer extends React.Component {
         break
       case " ":
       case "Enter":
+        e.preventDefault()
         if (this.state.status > states.MEMO) {
           this.newLevel()
         } else {
-          e.preventDefault()
           if (col !== 5) {
             this.handleClick(row, col)
           } else {

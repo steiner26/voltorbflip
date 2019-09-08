@@ -1,0 +1,82 @@
+@import "../variables.scss";
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  margin: 30px 0px;
+  border: 3px solid $border-color;
+  border-radius: 3px;
+  background-color: white;
+  width: 100%;
+
+  &:before {
+    background: none;
+    border: 1px solid black;
+    border-radius: 4px;
+    content: "";
+    display: block;
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    pointer-events: none;
+  }
+
+  @media (min-width: $breakpoint-tablet) {
+    border-width: 4px;
+    border-radius: 4px;
+    width: 75%;
+    max-width: 700px;
+
+    &:before {
+      border-width: 2px;
+      border-radius: 6px;
+      top: -6px;
+      left: -6px;
+      right: -6px;
+      bottom: -6px;
+    }
+  }
+
+  a {
+    text-decoration: none;
+
+    &:visited {
+      text-decoration: none;
+      color: blue;
+    }
+  }
+
+  > h2 {
+    text-decoration: underline;
+  }
+
+  > p {
+    align-self: flex-start;
+  }
+
+  > hr {
+    width: 100%;
+    border-bottom: 1px solid #d1e8e0;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.rules {
+  margin-left: 0;
+
+  > li {
+    list-style: none;
+  }
+
+  @media (min-width: $breakpoint-mobile) {
+    columns: 2;
+  }
+}

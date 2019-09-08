@@ -8,7 +8,6 @@ module.exports = {
     author: `Brandon Stein`,
     siteUrl: `https://steiner26.github.io/voltorbflip`,
     image: `/Social-Share.png`, // This path refers to the static folder
-    twitterUsername: `@`,
   },
   plugins: [
     `gatsby-plugin-sitemap`,
