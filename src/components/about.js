@@ -34,8 +34,7 @@ export default function About() {
       </p>
       <p>
         You can read more about this project on{" "}
-        {/* <a href="https://brandon-stein.com/projects/voltorbflip"> */}
-        <a href="https://www.brandon-stein.com/voltorbflip">
+        <a href="https://www.brandon-stein.com/projects/voltorbflip">
           my personal webpage
         </a>{" "}
         and the source code is available on{" "}
