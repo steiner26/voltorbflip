@@ -12,3 +12,15 @@ and am absolutely open to any feedback about my creation. Have fun and enjoy!
 
 
 # Voltorbflip with capacitor to run on android
+
+To build:
+1. Terminal on project root:
+   1. yarn
+   2. npx cap add android
+   3. npx cap sync
+   4. npx cap update android
+   5. npx cap copy android
+   6. npx cap open android
+2. With the android studio opened
+   1. Go to build and generate APKs
+   2. Download and install on your device
