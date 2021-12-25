@@ -183,6 +183,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 38px;
   width: 38px;
   background-color: $memo-gray;
   border-radius: 2px;
@@ -212,6 +213,7 @@
 
   @media (min-width: $breakpoint-tablet) {
     width: auto;
+    height: 50px;
   }
 
   svg {

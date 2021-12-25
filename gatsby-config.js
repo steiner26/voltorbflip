@@ -50,11 +50,11 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `voltorbflip`,
-        short_name: `starter`,
+        name: `Voltorb Flip`,
+        short_name: `Voltorb Flip`,
         start_url: `/`,
-        background_color: `#022bf4`,
-        theme_color: `#022bf4`,
+        background_color: `#309f6a`,
+        theme_color: `#309f6a`,
         display: `minimal-ui`,
         icon: `src/images/favicon.png`, // This path is relative to the root of the site.
       },
