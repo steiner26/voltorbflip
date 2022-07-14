@@ -1,0 +1,14 @@
+{
+  "appId": "com.example.app",
+  "appName": "Voltorb flip",
+  "bundledWebRuntime": false,
+  "npmClient": "yarn",
+  "webDir": "public",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {},
+  "linuxAndroidStudioPath": "/snap/bin/android-studio"
+}
