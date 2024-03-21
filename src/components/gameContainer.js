@@ -157,9 +157,7 @@ class GameContainer extends React.Component {
         const value = tile.value
         if (value) {
           newState.currentCoins = (prevState.currentCoins || 1) * value
-          if (value != 1) {
-            newstate.flippedtiles += 1
-          }
+          newstate.flippedtiles += 1
         } else {
           newState.currentCoins = 0
           newstate.flippedtiles = 0
