@@ -17,6 +17,7 @@ class GameContainer extends React.Component {
       level: 1,
       totalCoins: 0,
       currentCoins: 0,
+      flippedtiles: 0,
       maxCoins: 1,
       board: createGrid(() => ({})),
       memo: this.createMemo(),
@@ -156,8 +157,10 @@ class GameContainer extends React.Component {
         const value = tile.value
         if (value) {
           newState.currentCoins = (prevState.currentCoins || 1) * value
+          newstate.flippedtiles += 1
         } else {
           newState.currentCoins = 0
+          newstate.flippedtiles = 0
           newState.status = states.GAMELOST
           newState.cursor = {}
         }
@@ -203,6 +206,7 @@ class GameContainer extends React.Component {
           99999
         )
         newState.currentCoins = 0
+        newstate.flippedtiles = 0
         const { board, maxCoins } = createBoard(level)
         newState.board = board
         newState.maxCoins = maxCoins
@@ -210,7 +214,7 @@ class GameContainer extends React.Component {
         newState.status = states.NEWLEVEL
         this.timer = setTimeout(this.startGame, 2000)
       } else if (prevState.status === states.FLIPLOST) {
-        const level = levelDown(prevState.level)
+        const level = levelDown(prevState.flippedtiles, prevState.level)
         newState.level = level
         newState.prevLevel = prevState.level
         const { board, maxCoins } = createBoard(level)
