@@ -75,9 +75,6 @@ function relative(x, n) {
   return -Math.sqrt(x) + Math.sqrt(n) + 1
 }
 
-export function levelDown(level) {
-  return chance.weighted(
-    Array.from({ length: level }, (_, i) => i + 1),
-    Array.from({ length: level }, (_, i) => relative(i + 1, level))
-  )
+export function levelDown(flippedtiles, level) {
+  return max(level-flippedtiles,1)
 }
